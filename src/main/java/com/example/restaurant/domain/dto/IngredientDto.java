@@ -1,0 +1,15 @@
+package com.example.restaurant.domain.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class IngredientDto {
+    private Long id;
+    private String name;
+    private String type;
+    private Double quantity;
+    private String measureUnit;
+    private String description;
+}
