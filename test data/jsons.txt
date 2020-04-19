@@ -1,8 +1,0 @@
-{
-	"name": "nazwa skladnika 2",
-	"type": "rodzaj skladnika 2",
-	"quantity": 1.333,
-	"measureUnit": "g",
-	"description": "opis 2"
-}
-

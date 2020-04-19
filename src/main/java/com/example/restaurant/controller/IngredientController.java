@@ -43,7 +43,7 @@ public class IngredientController {
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public IngredientDto updateIngredient(@RequestBody IngredientDto ingredientDto){
-        logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getId());
+        logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getIngredientId());
         return mapper.mapToIngredientDto(service.saveIngredient(mapper.mapToIngredient(ingredientDto)));
     }
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,8 +14,8 @@ import javax.persistence.*;
 @Table(name = "ingredients")
 public class Ingredient {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ingredientId;
 
     @Column
     private String name;
@@ -30,4 +31,8 @@ public class Ingredient {
 
     @Column
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "dish_id")
+    private Dish dish;
 }

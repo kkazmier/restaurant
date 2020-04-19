@@ -43,7 +43,7 @@ public class DishController {
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public DishDto updateDish(@RequestBody DishDto dishDto){
-        logger.info("Update dish: " + dishDto.getName() + ", id = "+ dishDto.getId());
+        logger.info("Update dish: " + dishDto.getName() + ", id = "+ dishDto.getDishId());
         return mapper.mapToDishDto(service.saveDish(mapper.mapToDish(dishDto)));
     }
 
