@@ -1,4 +1,7 @@
 package com.example.restaurant.domain;
 
-public class Employee {
+public abstract class Employee {
+    private String firstName;
+    private String lastName;
+
 }
