@@ -38,13 +38,13 @@ public class IngredientController {
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createIngredient(@RequestBody IngredientDto ingredientDto){
         logger.info("Add new ingredient: " + ingredientDto.getName());
-        service.saveIngredient(mapper.mapToIngredient(ingredientDto));
+        service.saveIngredient(ingredientDto);
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public IngredientDto updateIngredient(@RequestBody IngredientDto ingredientDto){
-        logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getId());
-        return mapper.mapToIngredientDto(service.saveIngredient(mapper.mapToIngredient(ingredientDto)));
+        logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getIngredientId());
+        return mapper.mapToIngredientDto(service.saveIngredient(ingredientDto));
     }
 
     @DeleteMapping(value = "delete/{id}")

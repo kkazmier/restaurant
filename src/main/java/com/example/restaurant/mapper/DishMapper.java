@@ -11,29 +11,32 @@ import java.util.stream.Collectors;
 public class DishMapper {
     public Dish mapToDish(DishDto dishDto){
         return new Dish(
-                dishDto.getId(),
+                dishDto.getDishId(),
                 dishDto.getName(),
                 dishDto.getPrice(),
-                dishDto.getDescription()
+                dishDto.getDescription(),
+                dishDto.getIngredients()
         );
     }
 
     public DishDto mapToDishDto(Dish dish){
         return new DishDto(
-                dish.getId(),
+                dish.getDishId(),
                 dish.getName(),
                 dish.getPrice(),
-                dish.getDescription()
+                dish.getDescription(),
+                dish.getIngredients()
         );
     }
 
     public List<DishDto> mapToDishDtosList(List<Dish> dishes){
         return dishes.stream()
                 .map(d -> new DishDto(
-                        d.getId(),
+                        d.getDishId(),
                         d.getName(),
                         d.getPrice(),
-                        d.getDescription()))
+                        d.getDescription(),
+                        d.getIngredients()))
                 .collect(Collectors.toList());
     }
 }

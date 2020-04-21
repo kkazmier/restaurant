@@ -1,7 +1,10 @@
 package com.example.restaurant.mapper;
 
+import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
+import com.example.restaurant.repository.DishRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,37 +12,43 @@ import java.util.stream.Collectors;
 
 @Component
 public class IngredientMapper {
+    @Autowired
+    DishRepository dishRepository;
+
     public Ingredient mapToIngredient(IngredientDto ingredientDto){
         return new Ingredient(
-                ingredientDto.getId(),
+                ingredientDto.getIngredientId(),
                 ingredientDto.getName(),
                 ingredientDto.getType(),
                 ingredientDto.getQuantity(),
                 ingredientDto.getMeasureUnit(),
-                ingredientDto.getDescription()
+                ingredientDto.getDescription(),
+                dishRepository.findById(ingredientDto.getDishId()).orElse(new Dish())
         );
     }
 
     public IngredientDto mapToIngredientDto(Ingredient ingredient){
         return new IngredientDto(
-                ingredient.getId(),
+                ingredient.getIngredientId(),
                 ingredient.getName(),
                 ingredient.getType(),
                 ingredient.getQuantity(),
                 ingredient.getMeasureUnit(),
-                ingredient.getDescription()
+                ingredient.getDescription(),
+                ingredient.getDish().getDishId()
         );
     }
 
     public List<IngredientDto> mapToIngredientDtoList(List<Ingredient> ingredients){
         return ingredients.stream()
                 .map(i -> new IngredientDto(
-                        i.getId(),
+                        i.getIngredientId(),
                         i.getName(),
                         i.getType(),
                         i.getQuantity(),
                         i.getMeasureUnit(),
-                        i.getDescription()))
+                        i.getDescription(),
+                        i.getDish().getDishId()))
                 .collect(Collectors.toList());
     }
 }

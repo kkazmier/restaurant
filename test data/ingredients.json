@@ -1,0 +1,20 @@
+[{
+  "ingredientId": 1,
+  "name": "ziemniaki",
+  "type": "warzywo",
+  "quantity": 0.3,
+  "measureUnit": "g",
+  "description": "",
+  "dishId": 1
+}
+,
+{
+  "ingredientId": 2,
+  "name": "wieprzowina",
+  "type": "mięso",
+  "quantity": 0.1,
+  "measureUnit": "g",
+  "description": "",
+  "dishId": 1
+}
+]

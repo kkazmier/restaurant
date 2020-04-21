@@ -6,10 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class IngredientDto {
-    private Long id;
+    private Long ingredientId;
     private String name;
     private String type;
     private Double quantity;
     private String measureUnit;
     private String description;
+    private Long dishId;
 }
