@@ -1,6 +1,5 @@
 package com.example.restaurant.domain.dto;
 
-import com.example.restaurant.domain.Dish;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,5 +12,5 @@ public class IngredientDto {
     private Double quantity;
     private String measureUnit;
     private String description;
-    private Dish dish;
+    private Long dishId;
 }

@@ -1,7 +1,10 @@
 package com.example.restaurant.mapper;
 
+import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
+import com.example.restaurant.repository.DishRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class IngredientMapper {
+    @Autowired
+    DishRepository dishRepository;
+
     public Ingredient mapToIngredient(IngredientDto ingredientDto){
         return new Ingredient(
                 ingredientDto.getIngredientId(),
@@ -17,7 +23,7 @@ public class IngredientMapper {
                 ingredientDto.getQuantity(),
                 ingredientDto.getMeasureUnit(),
                 ingredientDto.getDescription(),
-                ingredientDto.getDish()
+                dishRepository.findById(ingredientDto.getDishId()).orElse(new Dish())
         );
     }
 
@@ -29,7 +35,7 @@ public class IngredientMapper {
                 ingredient.getQuantity(),
                 ingredient.getMeasureUnit(),
                 ingredient.getDescription(),
-                ingredient.getDish()
+                ingredient.getDish().getDishId()
         );
     }
 
@@ -42,7 +48,7 @@ public class IngredientMapper {
                         i.getQuantity(),
                         i.getMeasureUnit(),
                         i.getDescription(),
-                        i.getDish()))
+                        i.getDish().getDishId()))
                 .collect(Collectors.toList());
     }
 }
