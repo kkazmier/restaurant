@@ -1,9 +1,11 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Order;
 import com.example.restaurant.domain.dto.OrderDto;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.mapper.OrderMapper;
+import com.example.restaurant.service.DishService;
 import com.example.restaurant.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,9 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    DishService dishService;
 
     @Autowired
     OrderMapper orderMapper;
@@ -53,5 +58,18 @@ public class OrderController {
     public void deleteOrder(@PathVariable("id") Long id){
         logger.info("Try to delete order by id = " + id);
         orderService.deleteOrder(id);
+    }
+
+    @PutMapping(value = "addDish/{orderId}/{dishId}")
+    public void addDish(@PathVariable("orderId") Long orderId, @PathVariable("dishId") Long dishId){
+        Order order = orderService.getOrderById(orderId).orElseGet(null);
+        Dish dish = dishService.getDishById(dishId).orElseGet(null);
+
+        if((order != null) && (dish != null)){
+            logger.info("Order or dish have given id doesnt exist.");
+        } else {
+            order.getDishes().add(dish);
+            logger.info("Add " + dish.getName() + " to order.");
+        }
     }
 }
