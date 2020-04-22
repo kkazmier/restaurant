@@ -14,4 +14,5 @@ public class DishDto {
     private Double price;
     private String description;
     private List<Ingredient> ingredients;
+    private Long orderId;
 }

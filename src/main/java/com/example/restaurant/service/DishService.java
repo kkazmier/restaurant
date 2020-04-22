@@ -11,24 +11,24 @@ import java.util.Optional;
 @Service
 public class DishService {
     @Autowired
-    DishRepository repository;
+    DishRepository dishRepository;
 
     @Autowired
-    DishService service;
+    DishService dishService;
 
     public Optional<Dish> getDishById(Long id) {
-        return repository.findById(id);
+        return dishRepository.findById(id);
     }
 
     public List<Dish> getAllDishes(){
-        return repository.findAll();
+        return dishRepository.findAll();
     }
 
-    public Dish saveDish(Dish ingredient){
-        return repository.save(ingredient);
+    public Dish saveDish(Dish dish){
+        return dishRepository.save(dish);
     }
 
     public void deleteDish(Long id){
-        repository.deleteById(id);
+        dishRepository.deleteById(id);
     }
 }

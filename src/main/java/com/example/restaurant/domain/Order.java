@@ -1,9 +1,9 @@
 package com.example.restaurant.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,32 +12,28 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
-@Table(name = "dishes")
-public class Dish {
+@Table(name = "orders")
+public class Order {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long dishId;
+    private Long orderId;
 
     @Column
-    private String name;
-
-    @Column
-    private Double price;
+    private String status;
 
     @Column
     private String description;
 
-    //@JsonManagedReference
+    @Column
+    private boolean isTakeAway;
+
     @OneToMany(
-            targetEntity = Ingredient.class,
-            mappedBy = "dish",
+            targetEntity = Dish.class,
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    List<Ingredient> ingredients = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    private List<Dish> dishes = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.mapper.DishMapper;
@@ -25,8 +26,9 @@ public class DishController {
 
     @GetMapping("all")
     public List<DishDto> getDishes(){
-        logger.info("Get " + service.getAllDishes().size() + " dish(s)");
-        return mapper.mapToDishDtosList(service.getAllDishes());
+        List<Dish> dishes = service.getAllDishes();
+        logger.info("Get " + dishes.size() + " dish(s)");
+        return mapper.mapToDishDtosList(dishes);
     }
 
     @GetMapping("get/{id}")
