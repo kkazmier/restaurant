@@ -69,6 +69,7 @@ public class OrderController {
             logger.info("Order or dish have given id doesnt exist.");
         } else {
             order.getDishes().add(dish);
+            orderService.saveOrder(order);
             logger.info("Add " + dish.getName() + " to order.");
         }
     }
