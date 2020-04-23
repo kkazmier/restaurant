@@ -18,7 +18,7 @@ public class IngredientService {
     IngredientRepository ingredientRepository;
 
     @Autowired
-    DishRepository dishRepository;
+    DishService dishService;
 
     @Autowired
     IngredientMapper mapper;
@@ -33,7 +33,7 @@ public class IngredientService {
 
     public Ingredient saveIngredient(IngredientDto ingredientDto){
         Ingredient ingredient = mapper.mapToIngredient(ingredientDto);
-        Dish dish = dishRepository.findById(ingredientDto.getDishId()).orElse(new Dish());
+        Dish dish = dishService.getDishById(ingredientDto.getDishId()).orElse(new Dish());
         ingredient.setDish(dish);
         return ingredientRepository.save(ingredient);
     }
