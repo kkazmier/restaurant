@@ -17,12 +17,6 @@ public class IngredientService {
     @Autowired
     IngredientRepository ingredientRepository;
 
-    @Autowired
-    DishService dishService;
-
-    @Autowired
-    IngredientMapper mapper;
-
     public Optional<Ingredient> getIngredientById(Long id) {
         return ingredientRepository.findById(id);
     }
@@ -31,10 +25,7 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public Ingredient saveIngredient(IngredientDto ingredientDto){
-        Ingredient ingredient = mapper.mapToIngredient(ingredientDto);
-        Dish dish = dishService.getDishById(ingredientDto.getDishId()).orElse(new Dish());
-        ingredient.setDish(dish);
+    public Ingredient saveIngredient(Ingredient ingredient){
         return ingredientRepository.save(ingredient);
     }
 
