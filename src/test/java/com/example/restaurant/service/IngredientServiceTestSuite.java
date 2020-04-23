@@ -16,7 +16,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @WebMvcTest(IngredientService.class)
 public class IngredientServiceTestSuite {
     @Autowired
-    IngredientService service;
+    private IngredientService service;
 
     @Autowired
     IngredientRepository repository;
