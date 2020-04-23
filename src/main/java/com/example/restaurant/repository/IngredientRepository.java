@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Transactional
-@Repository
+@Repository()
 public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
     @Override
     List<Ingredient> findAll();
