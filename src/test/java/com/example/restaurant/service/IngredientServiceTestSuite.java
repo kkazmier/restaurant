@@ -7,13 +7,11 @@ import com.example.restaurant.repository.IngredientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(IngredientService.class)
 public class IngredientServiceTestSuite {
     @Autowired
     private IngredientService service;

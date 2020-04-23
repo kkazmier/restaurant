@@ -4,6 +4,7 @@ import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.repository.DishRepository;
+import com.example.restaurant.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,10 @@ import java.util.stream.Collectors;
 @Component
 public class IngredientMapper {
     @Autowired
-    DishRepository dishRepository;
+    DishService dishService;
+
+    @Autowired
+    DishMapper dishMapper;
 
     public Ingredient mapToIngredient(IngredientDto ingredientDto){
         return new Ingredient(
@@ -23,7 +27,7 @@ public class IngredientMapper {
                 ingredientDto.getQuantity(),
                 ingredientDto.getMeasureUnit(),
                 ingredientDto.getDescription(),
-                dishRepository.findById(ingredientDto.getDishId()).orElse(new Dish())
+                dishService.getDishById(ingredientDto.getDishId()).orElse(new Dish())
         );
     }
 
