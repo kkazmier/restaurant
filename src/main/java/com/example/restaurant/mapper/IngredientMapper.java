@@ -3,7 +3,6 @@ package com.example.restaurant.mapper;
 import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
-import com.example.restaurant.repository.DishRepository;
 import com.example.restaurant.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

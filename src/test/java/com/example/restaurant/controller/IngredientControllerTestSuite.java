@@ -2,25 +2,35 @@ package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.dto.IngredientDto;
+import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.mapper.IngredientMapper;
 import com.example.restaurant.repository.IngredientRepository;
 import com.example.restaurant.service.IngredientService;
+import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(IngredientController.class)
@@ -36,40 +46,44 @@ public class IngredientControllerTestSuite {
 
     @Test
     public void testGetIngredients() throws Exception{
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient.IngredientBuilder()
-                .ingredientId(1l)
-                .name("one")
-                .quantity(1)
-                .build());
-        ingredients.add(new Ingredient.IngredientBuilder()
-                .ingredientId(2l)
-                .name("two")
-                .quantity(2)
-                .build());
-
-        when(service.getAllIngredients()).thenReturn(ingredients);
-        mockMvc.perform(get("/v1/ingredient/all").contentType(MediaType.APPLICATION_JSON))
+        List<IngredientDto> ingredients = new ArrayList<>();
+        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l));
+        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", "second", 1l));
+        when(mapper.mapToIngredientDtoList(service.getAllIngredients())).thenReturn(ingredients);
+        mockMvc.perform(get("/v1/ingredient/all")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)));
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].ingredientId", is(1)))
+                .andExpect(jsonPath("$[0].quantity", is(1.0)))
+                .andExpect(jsonPath("$[1].description", is("second")));
     }
 
     @Test
     public void testGetIngredient() throws Exception {
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient.IngredientBuilder()
-                .ingredientId(1l)
-                .name("one")
-                .quantity(1)
-                .build());
-        ingredients.add(new Ingredient.IngredientBuilder()
-                .ingredientId(2l)
-                .name("two")
-                .quantity(2)
-                .build());
+        List<IngredientDto> ingredients = new ArrayList<>();
+        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l));
+        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", "second", 1l));
+        when(mapper.mapToIngredientDto(service.getIngredientById(ArgumentMatchers.any(IngredientDto.class).getIngredientId()).orElseThrow(ElementNotFoundException::new)))
+            .thenReturn(ingredients.get(1));
+        mockMvc.perform(get("/v1/ingredient/get/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+                //.andExpect(jsonPath("$", hasSize(1)));
+    }
 
-        when(service.getIngredientById(1l)).thenReturn(java.util.Optional.ofNullable(ingredients.get(0)));
-        mockMvc.perform(get("/v1/ingredient/get/1").contentType(MediaType.APPLICATION_JSON))
+    @Test
+    public void testCreateIngredient() throws Exception{
+        IngredientDto ingredient =
+                new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(ingredient);
+        //when(service.saveIngredient(mapper.mapToIngredient(ArgumentMatchers.any(IngredientDto.class)))).thenReturn(mapper.mapToIngredient(ingredient));
+        mockMvc.perform(post("/v1/ingredient/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));
     }

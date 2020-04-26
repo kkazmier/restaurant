@@ -26,9 +26,8 @@ public class IngredientController {
 
     @GetMapping("all")
     public List<IngredientDto> getIngredients(){
-        List<Ingredient> ingredients = service.getAllIngredients();
-        logger.info("Get " + ingredients.size() + " ingredient(s)");
-        return mapper.mapToIngredientDtoList(ingredients);
+        logger.info("Get ingredient(s)");
+        return mapper.mapToIngredientDtoList(service.getAllIngredients());
     }
 
     @GetMapping("get/{id}")
