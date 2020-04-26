@@ -47,8 +47,8 @@ public class IngredientControllerTestSuite {
     @Test
     public void testGetIngredients() throws Exception{
         List<IngredientDto> ingredients = new ArrayList<>();
-        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l));
-        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", "second", 1l));
+        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", 1.0, "first", 1l));
+        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", 1.0, "second", 1l));
         when(mapper.mapToIngredientDtoList(service.getAllIngredients())).thenReturn(ingredients);
         mockMvc.perform(get("/v1/ingredient/all")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -63,8 +63,8 @@ public class IngredientControllerTestSuite {
     @Test
     public void testGetIngredient() throws Exception {
         List<IngredientDto> ingredients = new ArrayList<>();
-        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l));
-        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", "second", 1l));
+        ingredients.add(new IngredientDto(1l, "test", "test", 1.0, "g", 1.0, "first", 1l));
+        ingredients.add(new IngredientDto(2l, "test", "test", 2.0, "g", 1.0, "second", 1l));
         when(mapper.mapToIngredientDto(service.getIngredientById(ArgumentMatchers.any(IngredientDto.class).getIngredientId()).orElseThrow(ElementNotFoundException::new)))
             .thenReturn(ingredients.get(1));
         mockMvc.perform(get("/v1/ingredient/get/1")
@@ -76,7 +76,7 @@ public class IngredientControllerTestSuite {
     @Test
     public void testCreateIngredient() throws Exception{
         IngredientDto ingredient =
-                new IngredientDto(1l, "test", "test", 1.0, "g", "first", 1l);
+                new IngredientDto(1l, "test", "test", 1.0, "g", 1.0, "first", 1l);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(ingredient);
         //when(service.saveIngredient(mapper.mapToIngredient(ArgumentMatchers.any(IngredientDto.class)))).thenReturn(mapper.mapToIngredient(ingredient));

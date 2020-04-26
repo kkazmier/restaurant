@@ -13,6 +13,7 @@ public class IngredientDto {
     private String type;
     private Double quantity;
     private String measureUnit;
+    private Double price;
     private String description;
     private Long dishId;
 }

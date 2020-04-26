@@ -25,7 +25,7 @@ public class IngredientServiceTestSuite {
     @Test
     public void testFindIngredientById() {
         Ingredient ingredient = mapper.mapToIngredient(
-                new IngredientDto(1L, "test", "test", 123.456, "?", "", 1L));
+                new IngredientDto(1L, "test", "test", 123.456, "?", 1.0, "", 1L));
         repository.save(ingredient);
         assertThat(service.getIngredientById(1L)).isEqualTo(ingredient);
     }

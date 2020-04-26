@@ -32,6 +32,9 @@ public class Ingredient {
     private String measureUnit;
 
     @Column
+    private Double price;
+
+    @Column
     private String description;
 
     @ManyToOne

@@ -25,6 +25,7 @@ public class IngredientMapper {
                 ingredientDto.getType(),
                 ingredientDto.getQuantity(),
                 ingredientDto.getMeasureUnit(),
+                ingredientDto.getPrice(),
                 ingredientDto.getDescription(),
                 dishService.getDishById(ingredientDto.getDishId()).orElse(new Dish())
         );
@@ -37,6 +38,7 @@ public class IngredientMapper {
                 ingredient.getType(),
                 ingredient.getQuantity(),
                 ingredient.getMeasureUnit(),
+                ingredient.getPrice(),
                 ingredient.getDescription(),
                 ingredient.getDish().getDishId()
         );
@@ -50,6 +52,7 @@ public class IngredientMapper {
                         i.getType(),
                         i.getQuantity(),
                         i.getMeasureUnit(),
+                        i.getPrice(),
                         i.getDescription(),
                         i.getDish().getDishId()))
                 .collect(Collectors.toList());
