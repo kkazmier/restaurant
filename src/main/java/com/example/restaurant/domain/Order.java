@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class Order {
 
     @Column
     private String status;
+
+    @Column
+    private LocalDateTime createTime;
+
+    @Column
+    private LocalDateTime closeTime;
 
     @Column
     private String description;

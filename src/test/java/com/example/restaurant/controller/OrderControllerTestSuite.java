@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.when;
@@ -40,7 +41,9 @@ public class OrderControllerTestSuite {
 
     @Test
     public void testCreateNewOrder() throws Exception{
-        Order order = orderMapper.mapToOrder(new OrderDto(1L, "in progress, ", "", false, new ArrayList<Dish>()));
+        Order order = orderMapper.mapToOrder(new OrderDto(
+                1L, "in progress, ", LocalDateTime.now(), LocalDateTime.now(),"",
+                false, new ArrayList<Dish>()));
 
         when(orderService.getOrderById(1L)).thenReturn(java.util.Optional.ofNullable(order));
         mockMvc.perform(get("/v1/order/get/1").contentType(MediaType.APPLICATION_JSON))
@@ -49,7 +52,9 @@ public class OrderControllerTestSuite {
 
     @Test
     public void testDeleteOrder() throws Exception {
-        Order order = orderMapper.mapToOrder(new OrderDto(1L, "in progress, ", "", false, new ArrayList<Dish>()));
+        Order order = orderMapper.mapToOrder(new OrderDto(
+                1L, "in progress, ", LocalDateTime.now(), LocalDateTime.now(),"",
+                false, new ArrayList<Dish>()));
 
         mockMvc.perform(delete("/v1/order/delete/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -59,7 +64,9 @@ public class OrderControllerTestSuite {
     public void testAddDishToOrder() throws Exception {
         DishDto dish1 = new DishDto(1L, "dish1", 10.00, "", new ArrayList<Ingredient>(), null);
         DishDto dish2 = new DishDto(2L, "dish1", 20.00, "", new ArrayList<Ingredient>(), null);
-        Order order = orderMapper.mapToOrder(new OrderDto(1L, "in progress, ", "", false, new ArrayList<Dish>()));
+        Order order = orderMapper.mapToOrder(new OrderDto(
+                1L, "in progress, ", LocalDateTime.now(), LocalDateTime.now(),"",
+                false, new ArrayList<Dish>()));
 
         when(orderService.getOrderById(1L)).thenReturn(java.util.Optional.ofNullable(order));
         mockMvc.perform(post("/v1/order/addDish/1/1").contentType(MediaType.APPLICATION_JSON))

@@ -13,6 +13,8 @@ public class OrderMapper {
         return new Order(
                 orderDto.getOrderId(),
                 orderDto.getStatus(),
+                orderDto.getCreateTime(),
+                orderDto.getCloseTime(),
                 orderDto.getDescription(),
                 orderDto.isTakeAway(),
                 orderDto.getDishes()
@@ -23,6 +25,8 @@ public class OrderMapper {
         return new OrderDto(
                 order.getOrderId(),
                 order.getStatus(),
+                order.getCreateTime(),
+                order.getCloseTime(),
                 order.getDescription(),
                 order.isTakeAway(),
                 order.getDishes()
@@ -34,6 +38,8 @@ public class OrderMapper {
                 .map(o -> new OrderDto(
                         o.getOrderId(),
                         o.getStatus(),
+                        o.getCreateTime(),
+                        o.getCloseTime(),
                         o.getDescription(),
                         o.isTakeAway(),
                         o.getDishes()))
