@@ -87,4 +87,14 @@ public class IngredientControllerTestSuite {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));
     }
+
+    @Test
+    public void testUpdateIngredient() {
+
+    }
+
+    @Test
+    public void testDeleteIngredient() {
+
+    }
 }
