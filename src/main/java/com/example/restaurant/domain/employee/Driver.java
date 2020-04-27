@@ -1,4 +1,4 @@
-package com.example.restaurant.domain;
+package com.example.restaurant.domain.employee;
 
 public class Driver {
 }

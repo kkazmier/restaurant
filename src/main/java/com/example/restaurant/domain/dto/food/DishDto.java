@@ -1,6 +1,6 @@
-package com.example.restaurant.domain.dto;
+package com.example.restaurant.domain.dto.food;
 
-import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.food.Ingredient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,10 +1,9 @@
-package com.example.restaurant.mapper;
+package com.example.restaurant.mapper.food;
 
-import com.example.restaurant.domain.Dish;
-import com.example.restaurant.domain.Order;
-import com.example.restaurant.domain.dto.DishDto;
-import com.example.restaurant.repository.OrderRepository;
-import com.example.restaurant.service.OrderService;
+import com.example.restaurant.domain.food.Dish;
+import com.example.restaurant.domain.food.Order;
+import com.example.restaurant.domain.dto.food.DishDto;
+import com.example.restaurant.service.food.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

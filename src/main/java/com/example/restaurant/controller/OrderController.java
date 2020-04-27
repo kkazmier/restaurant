@@ -1,12 +1,12 @@
 package com.example.restaurant.controller;
 
-import com.example.restaurant.domain.Dish;
-import com.example.restaurant.domain.Order;
-import com.example.restaurant.domain.dto.OrderDto;
+import com.example.restaurant.domain.food.Dish;
+import com.example.restaurant.domain.food.Order;
+import com.example.restaurant.domain.dto.food.OrderDto;
 import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.mapper.OrderMapper;
-import com.example.restaurant.service.DishService;
-import com.example.restaurant.service.OrderService;
+import com.example.restaurant.mapper.food.OrderMapper;
+import com.example.restaurant.service.food.DishService;
+import com.example.restaurant.service.food.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

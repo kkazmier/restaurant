@@ -1,4 +1,4 @@
 package com.example.restaurant.domain.report;
 
-public interface EmployeeReport {
+public class EmployeeReport {
 }

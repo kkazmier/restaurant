@@ -1,4 +1,4 @@
-package com.example.restaurant.domain;
+package com.example.restaurant.domain.food;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,21 +1,16 @@
 package com.example.restaurant.controller;
 
-import com.example.restaurant.domain.Dish;
-import com.example.restaurant.domain.Ingredient;
-import com.example.restaurant.domain.dto.IngredientDto;
+import com.example.restaurant.domain.dto.food.IngredientDto;
 import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.mapper.IngredientMapper;
-import com.example.restaurant.repository.IngredientRepository;
-import com.example.restaurant.service.IngredientService;
+import com.example.restaurant.mapper.food.IngredientMapper;
+import com.example.restaurant.service.food.IngredientService;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,7 +19,6 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
