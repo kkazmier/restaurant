@@ -1,6 +1,6 @@
 package com.example.restaurant.repository.food;
 
-import com.example.restaurant.domain.food.Order;
+import com.example.restaurant.domain.Order;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
 package com.example.restaurant.mapper.food;
 
-import com.example.restaurant.domain.food.Dish;
-import com.example.restaurant.domain.food.Ingredient;
-import com.example.restaurant.domain.dto.food.IngredientDto;
+import com.example.restaurant.domain.Dish;
+import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.IngredientDto;
 import com.example.restaurant.service.food.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

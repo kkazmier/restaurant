@@ -1,10 +1,10 @@
 package com.example.restaurant.controller;
 
-import com.example.restaurant.domain.food.Dish;
-import com.example.restaurant.domain.food.Ingredient;
-import com.example.restaurant.domain.food.Order;
-import com.example.restaurant.domain.dto.food.DishDto;
-import com.example.restaurant.domain.dto.food.OrderDto;
+import com.example.restaurant.domain.Dish;
+import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.Order;
+import com.example.restaurant.domain.DishDto;
+import com.example.restaurant.domain.OrderDto;
 import com.example.restaurant.mapper.food.OrderMapper;
 import com.example.restaurant.service.food.DishService;
 import com.example.restaurant.service.food.OrderService;

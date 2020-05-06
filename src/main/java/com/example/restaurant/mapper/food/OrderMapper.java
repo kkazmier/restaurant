@@ -1,7 +1,7 @@
 package com.example.restaurant.mapper.food;
 
-import com.example.restaurant.domain.food.Order;
-import com.example.restaurant.domain.dto.food.OrderDto;
+import com.example.restaurant.domain.Order;
+import com.example.restaurant.domain.OrderDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

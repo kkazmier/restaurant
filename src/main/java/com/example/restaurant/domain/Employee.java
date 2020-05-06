@@ -1,4 +1,4 @@
-package com.example.restaurant.domain.employee;
+package com.example.restaurant.domain;
 
 public abstract class Employee {
     private String firstName;
