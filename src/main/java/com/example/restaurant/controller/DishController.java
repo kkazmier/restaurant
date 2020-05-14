@@ -1,7 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Dish;
-import com.example.restaurant.domain.DishDto;
+import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.mapper.food.DishMapper;
 import com.example.restaurant.service.food.DishService;

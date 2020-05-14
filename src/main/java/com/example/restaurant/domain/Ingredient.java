@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "ingredients")
 public class Ingredient {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ingredientId;
 
     @Column
