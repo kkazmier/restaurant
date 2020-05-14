@@ -2,9 +2,8 @@ package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
-import com.example.restaurant.mapper.food.IngredientMapper;
-import com.example.restaurant.repository.food.IngredientRepository;
-import com.example.restaurant.service.food.IngredientService;
+import com.example.restaurant.mapper.IngredientMapper;
+import com.example.restaurant.repository.IngredientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
