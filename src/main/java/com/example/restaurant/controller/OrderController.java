@@ -61,16 +61,16 @@ public class OrderController {
     }
 
     @PutMapping(value = "addDish/{orderId}/{dishId}")
-    public void addDish(@PathVariable("orderId") Long orderId, @PathVariable("dishId") Long dishId){
-        Order order = orderService.getOrderById(orderId).orElseGet(null);
-        Dish dish = dishService.getDishById(dishId).orElseGet(null);
-
-        if((order != null) && (dish != null)){
-            logger.info("Order or dish have given id doesnt exist.");
-        } else {
-            order.getDishes().add(dish);
-            orderService.saveOrder(order);
-            logger.info("Add " + dish.getName() + " to order.");
-        }
+    public void addDish(@PathVariable("orderId") Long orderId, @PathVariable("dishId") Long dishId) throws ElementNotFoundException {
+//        Order order = orderService.getOrderById(orderId).orElseGet(null);
+//        Dish dish = dishService.getDishById(dishId).orElseGet(null);
+//
+//        if((order != null) && (dish != null)){
+//            logger.info("Order or dish have given id doesnt exist.");
+//        } else {
+//            order.getDishes().add(dish);
+//            orderService.saveOrder(order);
+//            logger.info("Add " + dish.getName() + " to order.");
+//        }
     }
 }

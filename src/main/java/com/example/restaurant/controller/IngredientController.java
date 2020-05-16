@@ -18,10 +18,10 @@ public class IngredientController {
     private final Logger logger = LoggerFactory.getLogger(IngredientController.class);
 
     @Autowired
-    IngredientService service;
+    private IngredientService service;
 
     @Autowired
-    IngredientMapper mapper;
+    private IngredientMapper mapper;
 
     @GetMapping("all")
     public List<IngredientDto> getIngredients(){
@@ -36,13 +36,13 @@ public class IngredientController {
     }
 
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createIngredient(@RequestBody IngredientDto ingredientDto){
+    public void createIngredient(@RequestBody IngredientDto ingredientDto) throws ElementNotFoundException {
         logger.info("Add new ingredient: " + ingredientDto.getName());
         service.saveIngredient(ingredientDto);
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public IngredientDto updateIngredient(@RequestBody IngredientDto ingredientDto){
+    public IngredientDto updateIngredient(@RequestBody IngredientDto ingredientDto) throws ElementNotFoundException {
         logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getIngredientId());
         return mapper.mapToIngredientDto(service.saveIngredient(ingredientDto));
     }

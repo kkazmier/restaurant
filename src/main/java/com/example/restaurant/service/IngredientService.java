@@ -26,7 +26,7 @@ public class IngredientService {
         return mapper.mapToIngredientDtoList(repository.findAll());
     }
 
-    public Ingredient saveIngredient(IngredientDto ingredient){
+    public Ingredient saveIngredient(IngredientDto ingredient) throws ElementNotFoundException {
         return repository.save(mapper.mapToIngredient(ingredient));
     }
 

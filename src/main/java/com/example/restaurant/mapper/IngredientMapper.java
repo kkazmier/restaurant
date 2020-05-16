@@ -2,12 +2,15 @@ package com.example.restaurant.mapper;
 
 import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.domain.dto.IngredientDto;
+import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -18,7 +21,7 @@ public class IngredientMapper {
     @Autowired
     DishMapper dishMapper;
 
-    public Ingredient mapToIngredient(IngredientDto ingredientDto){
+    public Ingredient mapToIngredient(IngredientDto ingredientDto) throws ElementNotFoundException {
         return new Ingredient(
                 ingredientDto.getIngredientId(),
                 ingredientDto.getName(),
@@ -27,7 +30,7 @@ public class IngredientMapper {
                 ingredientDto.getMeasureUnit(),
                 ingredientDto.getPrice(),
                 ingredientDto.getDescription(),
-                dishService.getDishById(ingredientDto.getDishId()).orElse(new Dish())
+                dishMapper.mapToDish(dishService.getDishById(ingredientDto.getDishId()).orElseThrow(ElementNotFoundException::new))
         );
     }
 
