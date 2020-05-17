@@ -14,17 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @WebMvcTest(OrderController.class)
 public class OrderControllerTestSuite {
     @Autowired
@@ -45,8 +46,8 @@ public class OrderControllerTestSuite {
                 1L, "in progress, ", LocalDateTime.now(), LocalDateTime.now(),"",
                 false, new ArrayList<Dish>()));
 
-        when(orderService.getOrderById(1L)).thenReturn(java.util.Optional.ofNullable(order));
-        mockMvc.perform(get("/v1/order/get/1").contentType(MediaType.APPLICATION_JSON))
+        when(orderService.saveOrder(any())).thenReturn(order);
+        mockMvc.perform(post("/v1/order/create").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 

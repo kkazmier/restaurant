@@ -35,33 +35,33 @@ public class DishController {
         return dishes;
     }
 
-    @GetMapping("get/{id}")
-    public DishDto getDish(@PathVariable("id") Long id) throws ElementNotFoundException {
-        logger.info("Request dish by id: " + id);
-        return service.getDishById(id).orElseThrow(ElementNotFoundException::new);
-    }
-
-    @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createDish(@RequestBody DishDto dishDto){
-        logger.info("Add new dish: " + dishDto.getName());
-        service.saveDish(dishDto);
-    }
-
-    @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public DishDto updateDish(@RequestBody DishDto dishDto){
-        logger.info("Update dish: " + dishDto.getName() + ", id = "+ dishDto.getDishId());
-        return dishMapper.mapToDishDto(service.saveDish(dishDto));
-    }
-
-    @DeleteMapping(value = "delete/{id}")
-    public void deleteDish(@PathVariable("id") Long id){
-        logger.info("Try to delete dish by id = " + id);
-        service.deleteDish(id);
-    }
-
-    @GetMapping("get/{id}/ingredients")
-    public List<IngredientDto> getIngredients(@PathVariable("id") Long id) throws ElementNotFoundException {
-        logger.info("Request ingredients dish by id: " + id);
-        return service.getIngredients(id);
-    }
+//    @GetMapping("get/{id}")
+//    public DishDto getDish(@PathVariable("id") Long id) throws ElementNotFoundException {
+//        logger.info("Request dish by id: " + id);
+//        return service.getDishById(id).orElseThrow(ElementNotFoundException::new);
+//    }
+//
+//    @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public void createDish(@RequestBody DishDto dishDto){
+//        logger.info("Add new dish: " + dishDto.getName());
+//        service.saveDish(dishDto);
+//    }
+//
+//    @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public DishDto updateDish(@RequestBody DishDto dishDto){
+//        logger.info("Update dish: " + dishDto.getName() + ", id = "+ dishDto.getDishId());
+//        return dishMapper.mapToDishDto(service.saveDish(dishDto));
+//    }
+//
+//    @DeleteMapping(value = "delete/{id}")
+//    public void deleteDish(@PathVariable("id") Long id){
+//        logger.info("Try to delete dish by id = " + id);
+//        service.deleteDish(id);
+//    }
+//
+//    @GetMapping("get/{id}/ingredients")
+//    public List<IngredientDto> getIngredients(@PathVariable("id") Long id) throws ElementNotFoundException {
+//        logger.info("Request ingredients dish by id: " + id);
+//        return service.getIngredients(id);
+//    }
 }
