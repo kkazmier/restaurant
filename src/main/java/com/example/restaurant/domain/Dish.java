@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "dishes")
 public class Dish {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long dishId;
 
     @Column

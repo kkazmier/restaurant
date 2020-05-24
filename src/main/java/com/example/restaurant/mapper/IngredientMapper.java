@@ -6,6 +6,7 @@ import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.service.DishService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +15,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class IngredientMapper {
-    @Autowired
-    DishService dishService;
 
-    @Autowired
-    DishMapper dishMapper;
+    private final DishService dishService;
+    private final DishMapper dishMapper;
 
     public Ingredient mapToIngredient(IngredientDto ingredientDto) throws ElementNotFoundException {
         return new Ingredient(

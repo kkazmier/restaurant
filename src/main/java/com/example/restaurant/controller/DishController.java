@@ -6,6 +6,7 @@ import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.mapper.DishMapper;
 import com.example.restaurant.mapper.IngredientMapper;
 import com.example.restaurant.service.DishService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/dish/")
+@AllArgsConstructor
 public class DishController {
     private final Logger logger = LoggerFactory.getLogger(DishController.class);
 
-    @Autowired
-    private DishService service;
+    private final DishService service;
 
-    @Autowired
-    private DishMapper dishMapper;
+    private final DishMapper dishMapper;
 
-    @Autowired
-    private IngredientMapper ingredientMapper;
+    private final IngredientMapper ingredientMapper;
 
     @GetMapping("all")
     public List<DishDto> getDishes(){

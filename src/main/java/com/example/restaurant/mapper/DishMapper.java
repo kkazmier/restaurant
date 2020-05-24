@@ -4,6 +4,7 @@ import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Order;
 import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.service.OrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class DishMapper {
-    @Autowired
-    OrderService orderService;
+
+    private final OrderService orderService;
 
     public Dish mapToDish(DishDto dishDto){
         return new Dish(
