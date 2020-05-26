@@ -1,6 +1,5 @@
 package com.example.restaurant.mapper;
 
-import com.example.restaurant.domain.Order;
 import com.example.restaurant.domain.dto.OrderDto;
 import org.springframework.stereotype.Component;
 

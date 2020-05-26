@@ -1,0 +1,22 @@
+package com.example.restaurant.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class NamedEntity extends BaseEntity {
+    @Column
+    private String name;
+
+    @Column
+    private String description;
+}

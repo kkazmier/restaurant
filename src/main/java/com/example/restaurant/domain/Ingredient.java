@@ -13,14 +13,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "ingredients")
-public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ingredientId;
-
-    @Column
-    private String name;
-
+public class Ingredient extends NamedEntity {
     @Column
     private String type;
 
@@ -32,9 +25,6 @@ public class Ingredient {
 
     @Column
     private Double price;
-
-    @Column
-    private String description;
 
     @ManyToOne
     @JoinColumn(name = "dish_id")

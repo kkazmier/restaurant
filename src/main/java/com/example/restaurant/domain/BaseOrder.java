@@ -10,20 +10,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderId;
-
-    @Column
-    private String status;
-
+public class BaseOrder extends BaseEntity {
     @Column
     private LocalDateTime createTime;
 
@@ -31,10 +23,10 @@ public class Order {
     private LocalDateTime closeTime;
 
     @Column
-    private String description;
+    private String status;
 
     @Column
-    private boolean isTakeAway;
+    private String description;
 
     @OneToMany(
             targetEntity = Dish.class,

@@ -13,19 +13,9 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "dishes")
-public class Dish {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long dishId;
-
-    @Column
-    private String name;
-
+public class Dish extends NamedEntity {
     @Column
     private Double price;
-
-    @Column
-    private String description;
 
     //@JsonManagedReference
     @OneToMany(
