@@ -26,7 +26,4 @@ public class Dish extends NamedEntity {
     )
     List<Ingredient> ingredients = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 }

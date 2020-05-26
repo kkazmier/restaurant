@@ -1,8 +1,8 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.mapper.IngredientMapper;
 import com.example.restaurant.service.IngredientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,31 +20,29 @@ public class IngredientController {
     @Autowired
     private IngredientService service;
 
-    @Autowired
-    private IngredientMapper mapper;
-
     @GetMapping("all")
-    public List<IngredientDto> getIngredients(){
+    public List<Ingredient> getIngredients(){
         logger.info("Get ingredient(s)");
         return service.getAllIngredients();
     }
 
     @GetMapping("get/{id}")
-    public IngredientDto getIngredient(@PathVariable("id") Long id) throws Exception {
+    public Ingredient getIngredient(@PathVariable("id") Long id) throws Exception {
         logger.info("Request ingredient by id: " + id);
-        return service.getIngredientById(id).orElseThrow(ElementNotFoundException::new);
+        return service.getIngredientById(id)
+                .orElseThrow(ElementNotFoundException::new);
     }
 
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createIngredient(@RequestBody IngredientDto ingredientDto) throws ElementNotFoundException {
-        logger.info("Add new ingredient: " + ingredientDto.getName());
-        service.saveIngredient(ingredientDto);
+    public void createIngredient(@RequestBody Ingredient ingredient) throws ElementNotFoundException {
+        logger.info("Add new ingredient: " + ingredient.getName());
+        service.saveIngredient(ingredient);
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public IngredientDto updateIngredient(@RequestBody IngredientDto ingredientDto) throws ElementNotFoundException {
-        logger.info("Update ingredient: " + ingredientDto.getName() + ", id = "+ ingredientDto.getIngredientId());
-        return mapper.mapToIngredientDto(service.saveIngredient(ingredientDto));
+    public Ingredient updateIngredient(@RequestBody Ingredient ingredient) throws ElementNotFoundException {
+        logger.info("Update ingredient: " + ingredient.getName() + ", id = "+ ingredient.getId());
+        return service.saveIngredient(ingredient);
     }
 
     @DeleteMapping(value = "delete/{id}")
