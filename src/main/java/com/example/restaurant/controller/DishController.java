@@ -1,5 +1,6 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.dto.DishDto;
 import com.example.restaurant.service.DishService;
 import lombok.AllArgsConstructor;
@@ -17,13 +18,9 @@ public class DishController {
 
     private final DishService service;
 
-    private final DishMapper dishMapper;
-
-    private final IngredientMapper ingredientMapper;
-
     @GetMapping("all")
-    public List<DishDto> getDishes(){
-        List<DishDto> dishes = service.getAllDishes();
+    public List<Dish> getDishes(){
+        List<Dish> dishes = service.getAllDishes();
         logger.info("Get " + dishes.size() + " dish(s)");
         return dishes;
     }

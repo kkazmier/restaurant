@@ -21,9 +21,6 @@ public class DishControllerTestSuite {
     @MockBean
     private DishService service;
 
-    @MockBean
-    private DishMapper mapper;
-
     @Test
     public void testGetDishes() throws Exception{
 //        List<DishDto> dishes = new ArrayList<>();
