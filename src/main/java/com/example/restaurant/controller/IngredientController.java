@@ -2,7 +2,6 @@ package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.mapper.IngredientMapper;
 import com.example.restaurant.service.IngredientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,7 +2,6 @@ package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.domain.Ingredient;
-import com.example.restaurant.mapper.IngredientMapper;
 import com.example.restaurant.service.IngredientService;
 import com.google.gson.Gson;
 import org.junit.Test;
