@@ -20,14 +20,14 @@ public class Ingredient extends NamedEntity {
     @Column
     private Double quantity;
 
-    @Column
+    @Column(name = "measure_unit")
     private String measureUnit;
 
     @Column
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "dish_id")
+    @JoinColumn(name = "dish_id", referencedColumnName = "id")
     private Dish dish;
 }
 //    public static class IngredientBuilder {

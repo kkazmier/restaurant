@@ -11,15 +11,11 @@ import java.util.Optional;
 //@Transactional
 @Repository
 public interface DishRepository extends CrudRepository<Dish, Long> {
-    @Override
     List<Dish> findAll();
 
-    @Override
     Optional<Dish> findById(Long id);
 
-    @Override
     Dish save(Dish ingredient);
 
-    @Override
     void deleteById(Long id);
 }

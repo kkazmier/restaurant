@@ -15,6 +15,9 @@ import java.util.List;
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
     @Column
+    private String type;
+
+    @Column
     private Double price;
 
     //@JsonManagedReference

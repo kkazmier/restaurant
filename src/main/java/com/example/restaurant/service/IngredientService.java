@@ -10,25 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class IngredientService {
-    private final IngredientRepository repository;
+public interface IngredientService {
+    Optional<Ingredient> getIngredientById(Long id) throws ElementNotFoundException;
 
-    public Optional<Ingredient> getIngredientById(Long id) throws Exception {
-        return Optional.of(repository.findById(id)
-                .orElseThrow(ElementNotFoundException::new));
-    }
+    List<Ingredient> getAllIngredients();
 
-    public List<Ingredient> getAllIngredients(){
-        return repository.findAll();
-    }
+    Ingredient saveIngredient(Ingredient ingredient);
 
-    public Ingredient saveIngredient(Ingredient ingredient) throws ElementNotFoundException {
-        return repository.save(ingredient);
-    }
-
-    public void deleteIngredient(Long id){
-        repository.deleteById(id);
-    }
+    void deleteIngredient(Long id);
 }

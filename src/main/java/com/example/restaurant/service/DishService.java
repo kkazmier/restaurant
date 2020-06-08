@@ -12,29 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class DishService {
-    private final DishRepository dishRepository;
+public interface DishService {
+    Optional<Dish> getDishById(Long id) throws ElementNotFoundException;
 
-    public Optional<Dish> getDishById(Long id) throws ElementNotFoundException{
-        return Optional.of(dishRepository.findById(id)
-                .orElseThrow(ElementNotFoundException::new));
-    }
+    List<Dish> getAllDishes();
 
-    public List<Dish> getAllDishes(){
-        return dishRepository.findAll();
-    }
+    Dish saveDish(Dish dish);
 
-    public Dish saveDish(Dish dish){
-        return dishRepository.save(dish);
-    }
+    void deleteDish(Long id);
 
-    public void deleteDish(Long id){
-        dishRepository.deleteById(id);
-    }
-
-    public List<Ingredient> getIngredients(Long id){
-        return dishRepository.findById(id).get().getIngredients();
-    }
+    List<Ingredient> getIngredients(Long id);
 }
