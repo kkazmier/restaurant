@@ -19,8 +19,8 @@ import java.util.List;
 public class DishController {
     private final Logger logger = LoggerFactory.getLogger(DishController.class);
 
-    private final DishService dishService;
-    private final IngredientService ingredientService;
+    private DishService dishService;
+    private IngredientService ingredientService;
 
     @GetMapping("all")
     public List<Dish> getDishes(){
@@ -45,16 +45,6 @@ public class DishController {
     public Dish updateDish(@RequestBody Dish dish){
         logger.info("Update dish: " + dish.getName() + ", id = "+ dish.getId());
         return dishService.saveDish(dish);
-    }
-
-    @PutMapping(value = "addIngr/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Dish addIngredient(@RequestBody Ingredient ingredient, @PathVariable("id") Long id) throws ElementNotFoundException {
-        Dish dish = dishService.getDishById(id).orElseThrow(ElementNotFoundException::new);
-        ingredientService.saveIngredient(ingredient);
-        dish.getIngredients().add(ingredient);
-        logger.info("Add " + ingredient.getName() + " to " + dish.getName() + " .");
-        return dishService.saveDish(dish);
-
     }
 
     @DeleteMapping(value = "delete/{id}")

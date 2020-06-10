@@ -1,5 +1,6 @@
 package com.example.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,12 @@ public class Ingredient extends NamedEntity {
     @Column
     private Double price;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "dish_id", referencedColumnName = "id")
+    @JoinColumn(
+            name = "dish_id",
+            referencedColumnName = "id",
+            nullable = false)
     private Dish dish;
 }
 //    public static class IngredientBuilder {

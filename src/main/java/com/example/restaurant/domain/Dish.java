@@ -1,5 +1,6 @@
 package com.example.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,12 @@ public class Dish extends NamedEntity {
     @Column
     private Double price;
 
-    //@JsonManagedReference
+    @JsonManagedReference
     @OneToMany(
             targetEntity = Ingredient.class,
             mappedBy = "dish",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY)
     List<Ingredient> ingredients = new ArrayList<>();
 
 }
