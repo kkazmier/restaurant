@@ -1,5 +1,4 @@
 package com.example.restaurant.domain;
 
-public class Employee extends Person {
-
+public class Role extends NamedEntity {
 }

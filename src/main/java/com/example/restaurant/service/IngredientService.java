@@ -1,11 +1,7 @@
 package com.example.restaurant.service;
 
-import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.domain.Ingredient;
 import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.repository.IngredientRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

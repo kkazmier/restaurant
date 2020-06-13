@@ -1,22 +1,14 @@
 package com.example.restaurant.service;
 
-import com.example.restaurant.domain.Ingredient;
-import com.example.restaurant.domain.dto.IngredientDto;
 import com.example.restaurant.repository.IngredientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientServiceTestSuite {

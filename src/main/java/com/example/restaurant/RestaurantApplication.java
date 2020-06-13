@@ -1,11 +1,7 @@
 package com.example.restaurant;
 
-import com.example.restaurant.domain.Ingredient;
-import com.example.restaurant.repository.IngredientRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class RestaurantApplication {
