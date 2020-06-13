@@ -1,4 +1,8 @@
 package com.example.restaurant.domain;
 
-public class Waiter {
+import javax.persistence.Table;
+
+@Table
+public class Waiter extends Employee {
+
 }

@@ -1,7 +1,13 @@
 package com.example.restaurant.domain;
 
-public abstract class Employee {
-    private String firstName;
-    private String lastName;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
+public class Employee extends BaseEntity{
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
 }

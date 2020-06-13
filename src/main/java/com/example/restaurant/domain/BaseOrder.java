@@ -1,5 +1,6 @@
 package com.example.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,28 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MappedSuperclass
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class BaseOrder extends BaseEntity {
+public class BaseOrder extends NamedEntity {
     @Column
-    private LocalDateTime createTime;
+    private LocalDateTime createdTime;
 
     @Column
-    private LocalDateTime closeTime;
+    private LocalDateTime closedTime;
 
     @Column
     private String status;
-
-    @Column
-    private String description;
-
-    @OneToMany(
-            targetEntity = Dish.class,
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Dish> dishes = new ArrayList<>();
 }

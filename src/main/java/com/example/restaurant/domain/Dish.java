@@ -1,7 +1,9 @@
 package com.example.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
+@Builder
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
     @Column
@@ -27,6 +30,14 @@ public class Dish extends NamedEntity {
             mappedBy = "dish",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY)
-    List<Ingredient> ingredients = new ArrayList<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(
+            name = "order_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private BaseOrder order;
 
 }

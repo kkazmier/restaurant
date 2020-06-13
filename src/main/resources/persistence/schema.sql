@@ -1,5 +1,6 @@
 drop table if exists ingredients;
 drop table if exists dishes;
+drop table if exists orders;
 
 create table ingredients(
     id integer not null auto_increment,
@@ -16,9 +17,17 @@ create table ingredients(
 
 create table dishes(
     id integer not null auto_increment,
+    order_id integer,
     name varchar(30) not null,
     type varchar(30),
     price double(10, 2),
     description varchar(300),
-    primary key(id)
+    primary key(id),
+    foreign key (order_id) references orders(id)
+);
+
+create table orders(
+    id integer not null auto_increment,
+    description varchar(300),
+    createdTime datetime not null
 );
