@@ -33,11 +33,6 @@ public class Dish extends NamedEntity {
     private List<Ingredient> ingredients = new ArrayList<>();
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(
-            name = "order_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private BaseOrder order;
-
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dishes")
+    private List<TableOrder> orders;
 }

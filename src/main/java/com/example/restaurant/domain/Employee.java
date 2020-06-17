@@ -1,5 +1,38 @@
 package com.example.restaurant.domain;
 
-public class Employee extends Person {
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Builder
+@Table(name = "employees")
+public class Employee extends Person {
+    @Column
+    private LocalDate hireDate;
+
+    @JsonManagedReference
+    @OneToMany(
+            targetEntity = Role.class,
+            mappedBy = "employee",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY)
+    private List<Role> roles = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(
+            targetEntity = TableOrder.class,
+            mappedBy = "employee",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY)
+    private List<TableOrder> orders = new ArrayList<>();
 }

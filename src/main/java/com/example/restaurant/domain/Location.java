@@ -1,0 +1,22 @@
+package com.example.restaurant.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@Table(name = "locations")
+public class Location extends BaseEntity {
+    @Column
+    private String Town;
+
+    @Column
+    private String Street;
+
+    @Column
+    private String buildingNumber;
+
+    @Column
+    private String flatNumber;
+
+    @Column
+    private String zipCode;
+}

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@Getter
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

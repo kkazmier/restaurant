@@ -21,4 +21,7 @@ public class BaseOrder extends NamedEntity {
 
     @Column
     private String status;
+
+    @Column
+    private Double totalCost;
 }

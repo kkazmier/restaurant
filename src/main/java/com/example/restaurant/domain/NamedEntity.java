@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@Getter
 public class NamedEntity extends BaseEntity {
     @Column
     private String name;
