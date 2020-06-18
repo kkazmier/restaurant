@@ -1,17 +1,17 @@
 package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @MappedSuperclass
+@Getter
 public class BaseOrder extends NamedEntity {
     @Column
     private LocalDateTime createdTime;

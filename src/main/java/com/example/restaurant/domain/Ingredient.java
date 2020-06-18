@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Builder
 @Table(name = "ingredients")
 public class Ingredient extends NamedEntity {
     @Column

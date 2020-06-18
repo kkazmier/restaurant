@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Builder
 @Table(name = "employees")
 public class Employee extends Person {
     @Column

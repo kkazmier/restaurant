@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Builder
 @Table(name = "table_orders")
 public class TableOrder extends BaseOrder {
     @JsonManagedReference

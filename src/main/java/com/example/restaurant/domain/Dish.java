@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Builder
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
     @Column

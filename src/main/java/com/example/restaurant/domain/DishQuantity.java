@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-@Builder
 @Table(name = "dish_quantities")
 public class DishQuantity extends BaseEntity {
     @Column
