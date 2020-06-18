@@ -1,0 +1,11 @@
+[
+  {
+    "description": "no comments",
+    "name": "waiter",
+    "firstName": "Jan",
+    "lastName": "Kowalski",
+    "email": "kowalski@example.com",
+    "phone": "555666777",
+    "hireDate": "2020-01-03"
+  }
+]

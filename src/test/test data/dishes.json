@@ -2,7 +2,8 @@
   {
     "dishId": 1,
     "name": "zestaw 1",
-    "price": 20,
-    "description": "..."
+    "type": "typ testowy",
+    "price": 20.00,
+    "description": "zestaw testowy"
   }
 ]

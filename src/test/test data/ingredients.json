@@ -1,19 +1,19 @@
 [{
-  "ingredientId": 1,
   "name": "ziemniaki",
   "type": "warzywo",
   "quantity": 0.3,
   "measureUnit": "g",
+  "price": 4.00,
   "description": "",
   "dishId": 1
 }
 ,
 {
-  "ingredientId": 2,
   "name": "wieprzowina",
   "type": "mięso",
   "quantity": 0.1,
   "measureUnit": "g",
+  "price": 20.00,
   "description": "",
   "dishId": 1
 }
