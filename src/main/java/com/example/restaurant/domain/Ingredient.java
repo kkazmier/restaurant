@@ -18,18 +18,18 @@ public class Ingredient extends NamedEntity {
     @Column
     private Double quantity;
 
-    @Column(name = "measure_unit")
+    @Column(name = "measureUnit")
     private String measureUnit;
 
     @Column
     private Double price;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     @JoinColumn(
-            name = "dish_id",
+            name = "dishId",
             referencedColumnName = "id",
-            nullable = false)
+            nullable = true)
     private Dish dish;
 }
 //    public static class IngredientBuilder {

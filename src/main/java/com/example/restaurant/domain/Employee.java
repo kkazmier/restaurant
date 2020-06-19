@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "employees")
 public class Employee extends Person {
-    @Column
+    @Column(name = "hireDate")
     private LocalDate hireDate;
 
     @JsonManagedReference

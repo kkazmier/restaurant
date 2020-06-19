@@ -8,6 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @MappedSuperclass
 @Getter
+@Setter
 public class BaseEntity {
     @Id
     @Column(name = "id")

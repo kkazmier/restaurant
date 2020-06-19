@@ -14,17 +14,17 @@ import javax.persistence.Table;
 @Table(name = "locations")
 public class Location extends BaseEntity {
     @Column
-    private String Town;
+    private String town;
 
     @Column
-    private String Street;
+    private String street;
 
-    @Column
+    @Column(name = "buildingNumber")
     private String buildingNumber;
 
-    @Column
+    @Column(name = "flatNumber")
     private String flatNumber;
 
-    @Column
+    @Column(name = "zipCode")
     private String zipCode;
 }

@@ -11,12 +11,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "dish_quantities")
+@Table(name = "dishQuantities")
 public class DishQuantity extends BaseEntity {
     @Column
     private Integer quantity;
 
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "dish_id", referencedColumnName = "id")
+    @JoinColumn(name = "dishId", referencedColumnName = "id")
     private Dish dish;
 }

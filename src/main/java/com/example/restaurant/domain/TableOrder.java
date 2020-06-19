@@ -15,20 +15,20 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "table_orders")
+@Table(name = "tableOrders")
 public class TableOrder extends BaseOrder {
     @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "join_table_orders_dish_quantities",
-            joinColumns = {@JoinColumn(name = "dish_quantity_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name =  "table_order_id", referencedColumnName = "id")})
+            name = "joinTableOrdersDishQuantities",
+            joinColumns = {@JoinColumn(name = "dishQuantityId", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name =  "tableOrderId", referencedColumnName = "id")})
     List<Dish> dishes = new ArrayList<>();
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(
-            name = "employee_id",
+            name = "employeeId",
             referencedColumnName = "id",
             nullable = false)
     private Employee employee;

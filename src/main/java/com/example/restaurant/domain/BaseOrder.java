@@ -13,15 +13,15 @@ import java.util.List;
 @MappedSuperclass
 @Getter
 public class BaseOrder extends NamedEntity {
-    @Column
+    @Column(name = "createdTime")
     private LocalDateTime createdTime;
 
-    @Column
+    @Column(name = "closedTime")
     private LocalDateTime closedTime;
 
     @Column
     private String status;
 
-    @Column
+    @Column(name = "totalCost")
     private Double totalCost;
 }

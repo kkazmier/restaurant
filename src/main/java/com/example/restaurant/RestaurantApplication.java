@@ -1,7 +1,11 @@
 package com.example.restaurant;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import scenarios.scenario1.IngredientsAndDishes;
 
 @SpringBootApplication
 public class RestaurantApplication {
@@ -10,15 +14,10 @@ public class RestaurantApplication {
 		SpringApplication.run(RestaurantApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner checkoutIngredientEntity(IngredientRepository ingredientRepository) {
-//		return (args) -> {
-//			Ingredient ingr = new Ingredient();
-//			ingr.setName("ziemniaki");
-//			ingredientRepository.save(ingr);
-//			ingr.setName("marchew");
-//			ingredientRepository.save(ingr);
-//			System.out.println(ingredientRepository.findAll().size());
-//		};
-//	}
+	@Bean
+	public CommandLineRunner addIngredientsAndDishesToDB() {
+		return (args) -> {
+
+		};
+	}
 }

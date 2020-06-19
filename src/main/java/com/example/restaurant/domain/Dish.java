@@ -2,10 +2,7 @@ package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
@@ -23,7 +21,7 @@ public class Dish extends NamedEntity {
     @Column
     private Double price;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(
             targetEntity = Ingredient.class,
             mappedBy = "dish",
@@ -31,7 +29,7 @@ public class Dish extends NamedEntity {
             fetch = FetchType.LAZY)
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    @JsonBackReference
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dishes")
-    private List<TableOrder> orders;
+//    //@JsonBackReference
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "dishes")
+//    private List<TableOrder> orders;
 }

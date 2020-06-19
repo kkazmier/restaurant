@@ -13,7 +13,7 @@ import javax.persistence.Table;
 //@NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "delivery_orders")
+@Table(name = "deliveryOrders")
 public class DeliveryOrder extends BaseOrder {
 
 }

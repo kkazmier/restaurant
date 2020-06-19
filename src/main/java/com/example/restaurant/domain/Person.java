@@ -13,10 +13,10 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Getter
 public class Person extends NamedEntity {
-    @Column
+    @Column(name = "firstName")
     private String firstName;
 
-    @Column
+    @Column(name = "lastName")
     private String lastName;
 
     @Column

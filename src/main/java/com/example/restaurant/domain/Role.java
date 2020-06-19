@@ -9,16 +9,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "roles")
+@Entity
+@Table(name = "roles")
 public class Role extends NamedEntity {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(
-            name = "employee_id",
+            name = "employeeId",
             referencedColumnName = "id",
             nullable = false)
     private Employee employee;
