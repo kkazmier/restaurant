@@ -21,7 +21,7 @@ public class Dish extends NamedEntity {
     @Column
     private Double price;
 
-    //@JsonManagedReference
+    @JsonManagedReference
     @OneToMany(
             targetEntity = Ingredient.class,
             mappedBy = "dish",

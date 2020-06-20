@@ -18,4 +18,6 @@ public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
     Ingredient save(Ingredient ingredient);
 
     void deleteById(Long id);
+
+    void deleteIngredientById(Long id);
 }

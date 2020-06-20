@@ -32,6 +32,6 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     public void deleteIngredient(Long id){
-        repository.deleteById(id);
+        repository.deleteIngredientById(id);
     }
 }

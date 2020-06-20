@@ -24,12 +24,12 @@ public class Ingredient extends NamedEntity {
     @Column
     private Double price;
 
-    //@JsonBackReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(
             name = "dishId",
             referencedColumnName = "id",
-            nullable = true)
+            nullable = false)
     private Dish dish;
 }
 //    public static class IngredientBuilder {
