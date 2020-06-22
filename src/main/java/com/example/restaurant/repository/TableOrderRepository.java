@@ -1,6 +1,7 @@
 package com.example.restaurant.repository;
 
 import com.example.restaurant.domain.Ingredient;
+import com.example.restaurant.domain.TableOrder;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,12 +11,14 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
-    List<Ingredient> findAll();
+public interface TableOrderRepository extends CrudRepository<TableOrder, Long> {
+    List<TableOrder> findAll();
 
-    Optional<Ingredient> findById(Long id);
+    Optional<TableOrder> findById(Long id);
 
-    Ingredient save(Ingredient ingredient);
+    TableOrder save(TableOrder tableOrder);
 
-    void deleteIngredientById(Long id);
+    void deleteTableOrderById(Long id);
+
+    boolean existsTableOrderById(Long id);
 }

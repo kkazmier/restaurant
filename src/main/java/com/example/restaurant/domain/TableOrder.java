@@ -17,10 +17,10 @@ import java.util.List;
 @Entity
 @Table(name = "tableOrders")
 public class TableOrder extends BaseOrder {
-    @JsonManagedReference
-    @ManyToMany(cascade = CascadeType.ALL)
+    //@JsonManagedReference
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-            name = "joinTableOrdersDishQuantities",
+            name = "tableOrdersDishQuantities",
             joinColumns = {@JoinColumn(name = "dishQuantityId", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name =  "tableOrderId", referencedColumnName = "id")})
     List<Dish> dishes = new ArrayList<>();
