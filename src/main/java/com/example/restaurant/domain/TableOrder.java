@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "tableOrders")
 public class TableOrder extends BaseOrder {
     //@JsonManagedReference
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {})
     @JoinTable(
             name = "tableOrdersDishQuantities",
             joinColumns = {@JoinColumn(name = "dishQuantityId", referencedColumnName = "id")},

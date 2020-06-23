@@ -23,7 +23,7 @@ public class Employee extends Person {
     @OneToMany(
             targetEntity = Role.class,
             mappedBy = "employee",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Role> roles = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class Employee extends Person {
     @OneToMany(
             targetEntity = TableOrder.class,
             mappedBy = "employee",
-            cascade = CascadeType.PERSIST,
+            //cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<TableOrder> orders = new ArrayList<>();
 }
