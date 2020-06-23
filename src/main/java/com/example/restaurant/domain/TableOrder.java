@@ -31,5 +31,5 @@ public class TableOrder extends BaseOrder {
             name = "employeeId",
             referencedColumnName = "id",
             nullable = false)
-    private Employee employee;
+    private Employee employee = new Employee();
 }
