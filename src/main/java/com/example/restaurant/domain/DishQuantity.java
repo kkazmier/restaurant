@@ -1,5 +1,6 @@
 package com.example.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,4 +20,12 @@ public class DishQuantity extends BaseEntity {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "dishId", referencedColumnName = "id")
     private Dish dish;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(
+            name = "tableOrderId",
+            referencedColumnName = "id",
+            nullable = false)
+    private TableOrder order;
 }

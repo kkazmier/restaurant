@@ -2,10 +2,7 @@ package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,22 +11,23 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "tableOrders")
 public class TableOrder extends BaseOrder {
-    //@JsonManagedReference
-    @ManyToMany(cascade = {})
-    @JoinTable(
-            name = "tableOrdersDishQuantities",
-            joinColumns = {@JoinColumn(name = "dishQuantityId", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name =  "tableOrderId", referencedColumnName = "id")})
-    List<Dish> dishes = new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(
+            targetEntity = DishQuantity.class,
+            //mappedBy = "order",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    List<DishQuantity> dishes = new ArrayList<>();
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(
             name = "employeeId",
-            referencedColumnName = "id",
-            nullable = false)
+            referencedColumnName = "id")
+            //nullable = false)
     private Employee employee = new Employee();
 }
