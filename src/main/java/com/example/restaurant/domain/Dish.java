@@ -28,9 +28,4 @@ public class Dish extends NamedEntity {
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY)
     private List<Ingredient> ingredients = new ArrayList<>();
-
-    //@JsonBackReference
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            mappedBy = "dishes")
-    private List<TableOrder> orders = new ArrayList<>();
 }

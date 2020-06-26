@@ -17,9 +17,9 @@ public class DishQuantity extends BaseEntity {
     @Column
     private Integer quantity;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "dishId", referencedColumnName = "id")
-    private Dish dish;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "dishId", referencedColumnName = "id")
+//    private Dish dish;
 
     @JsonBackReference
     @ManyToOne

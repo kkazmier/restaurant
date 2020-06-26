@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @AllArgsConstructor
@@ -14,5 +16,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
+    }
+
+    @Override
+    public Optional<Employee> getEmployee(Long id) throws Exception {
+        return employeeRepository.findEmployeeById(id);
     }
 }

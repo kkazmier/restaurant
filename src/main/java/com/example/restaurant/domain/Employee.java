@@ -30,8 +30,8 @@ public class Employee extends Person {
     @JsonManagedReference
     @OneToMany(
             targetEntity = TableOrder.class,
-            mappedBy = "employee")
-            //cascade = CascadeType.ALL,
-            //fetch = FetchType.LAZY)
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private List<TableOrder> orders = new ArrayList<>();
 }

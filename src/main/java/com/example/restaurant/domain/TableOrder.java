@@ -18,10 +18,10 @@ public class TableOrder extends BaseOrder {
     @JsonManagedReference
     @OneToMany(
             targetEntity = DishQuantity.class,
-            //mappedBy = "order",
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    List<DishQuantity> dishes = new ArrayList<>();
+    List<DishQuantity> dishQuantities = new ArrayList<>();
 
     @JsonBackReference
     @ManyToOne
