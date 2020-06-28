@@ -37,7 +37,7 @@ public class TableOrderServiceImpl implements TableOrderService {
     }
 
     @Override
-    public boolean isExist(Long id) {
+    public boolean isTableOrderExist(Long id) {
         return tableOrderRepository.existsTableOrderById(id);
     }
 }
