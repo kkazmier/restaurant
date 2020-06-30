@@ -17,11 +17,11 @@ import java.util.List;
 public class TableOrder extends BaseOrder {
     @JsonManagedReference
     @OneToMany(
-            targetEntity = DishQuantity.class,
+            targetEntity = Dish.class,
             mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    List<DishQuantity> dishQuantities = new ArrayList<>();
+    List<Dish> dishes = new ArrayList<>();
 
     @JsonBackReference
     @ManyToOne

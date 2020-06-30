@@ -21,11 +21,18 @@ public class Dish extends NamedEntity {
     @Column
     private Double price;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(
+            name = "odderId",
+            referencedColumnName = "id")
+    TableOrder order;
+
     @JsonManagedReference
     @OneToMany(
             targetEntity = Ingredient.class,
             mappedBy = "dish",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Ingredient> ingredients = new ArrayList<>();
 }

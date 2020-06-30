@@ -41,6 +41,11 @@ public class DishController {
         dishService.saveDish(dish);
     }
 
+    @PostMapping(value = "addIngredient/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addIngredient(@RequestBody Ingredient ingredient, @PathVariable("id") Long id){
+
+    }
+
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Dish updateDish(@RequestBody Dish dish){
         logger.info("Update dish: " + dish.getName() + ", id = "+ dish.getId());
