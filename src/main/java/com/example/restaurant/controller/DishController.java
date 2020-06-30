@@ -42,8 +42,15 @@ public class DishController {
     }
 
     @PostMapping(value = "addIngredient/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addIngredient(@RequestBody Ingredient ingredient, @PathVariable("id") Long id){
-
+    public void addIngredient(
+            @RequestBody Ingredient ingredient,
+            @PathVariable("id") Long id)
+            throws ElementNotFoundException{
+        logger.info("Try add ingredient to dish.");
+        Dish dish = dishService.getDishById(id).orElseThrow(ElementNotFoundException::new);
+        dish.getIngredients().add(ingredient);
+        ingredient.setDish(dish);
+        ingredientService.saveIngredient(ingredient);
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
