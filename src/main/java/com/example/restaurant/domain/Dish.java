@@ -35,4 +35,6 @@ public class Dish extends NamedEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Ingredient> ingredients = new ArrayList<>();
+
+
 }

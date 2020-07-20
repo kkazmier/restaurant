@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,13 @@ public class DishController {
         return dishService.getDishById(id).orElseThrow(ElementNotFoundException::new);
     }
 
+    @GetMapping("getIngredients/{id}")
+    public List<Ingredient> getIngredients(@PathVariable("id") Long id) throws ElementNotFoundException{
+        logger.info("Get ingredients of dish by id: " + id);
+        Dish dish = dishService.getDishById(id).orElse(new Dish());
+        return dish.getIngredients();
+    }
+
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createDish(@RequestBody Dish dish){
         logger.info("Add new dish: " + dish.getName());
@@ -53,6 +61,21 @@ public class DishController {
         ingredientService.saveIngredient(ingredient);
     }
 
+    @PostMapping(value = "addIngredient/{ingredientId}/toDish/{dishId}")
+    public void addExistIngredientToDish(
+            @PathVariable("ingredientId") Long ingredientId,
+            @PathVariable("dishId") Long dishId)
+        throws ElementNotFoundException{
+        Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
+        Ingredient ingredient = ingredientService.getIngredientById(ingredientId).orElseThrow(ElementNotFoundException::new);
+        ingredient.setDish(dish);
+        dish.getIngredients().add(ingredient);
+        dishService.saveDish(dish);
+        ingredientService.saveIngredient(ingredient);
+        logger.info("Add " + ingredient + " to " + dish);
+        logger.info("Dish: " + dish);
+    }
+
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Dish updateDish(@RequestBody Dish dish){
         logger.info("Update dish: " + dish.getName() + ", id = "+ dish.getId());
@@ -63,11 +86,5 @@ public class DishController {
     public void deleteDish(@PathVariable("id") Long id){
         logger.info("Try to delete dish by id = " + id);
         dishService.deleteDish(id);
-    }
-
-    @GetMapping("get/{id}/ingredients")
-    public List<Ingredient> getIngredients(@PathVariable("id") Long id) {
-        logger.info("Request ingredients dish by id: " + id);
-        return dishService.getIngredients(id);
     }
 }

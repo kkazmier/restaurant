@@ -31,4 +31,6 @@ public class Ingredient extends NamedEntity {
             referencedColumnName = "id"
     )
     private Dish dish;
+
+
 }
