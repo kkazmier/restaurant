@@ -61,11 +61,11 @@ public class DishController {
         ingredientService.saveIngredient(ingredient);
     }
 
-    @PostMapping(value = "addIngredient/{ingredientId}/toDish/{dishId}")
+    @PutMapping(value = "addIngredient/{ingredientId}/toDish/{dishId}")
     public void addExistIngredientToDish(
             @PathVariable("ingredientId") Long ingredientId,
             @PathVariable("dishId") Long dishId)
-        throws ElementNotFoundException{
+            throws ElementNotFoundException{
         Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
         Ingredient ingredient = ingredientService.getIngredientById(ingredientId).orElseThrow(ElementNotFoundException::new);
         ingredient.setDish(dish);
@@ -74,6 +74,20 @@ public class DishController {
         ingredientService.saveIngredient(ingredient);
         logger.info("Add " + ingredient + " to " + dish);
         logger.info("Dish: " + dish);
+    }
+
+    @PutMapping(value = "removeIngredient/{ingredientId}/fromDish/{dishId}")
+    public void removeIngredientFromDish(
+            @PathVariable("ingredientId") Long ingredientId,
+            @PathVariable("dishId") Long dishId)
+            throws ElementNotFoundException{
+        Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
+        Ingredient ingredient = ingredientService.getIngredientById(ingredientId).orElseThrow(ElementNotFoundException::new);
+        dish.getIngredients().remove(ingredient);
+        ingredient.setDish(null);
+        dishService.saveDish(dish);
+        ingredientService.saveIngredient(ingredient);
+        logger.info("Remove " + ingredient + " from " + dish);
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
