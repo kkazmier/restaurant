@@ -27,6 +27,10 @@ public class IngredientServiceImpl implements IngredientService {
         return repository.findAll();
     }
 
+    public List<Ingredient> getIngredientsNotDependToDish() {
+        return repository.getIngredientsNotDependToDish();
+    }
+
     public Ingredient saveIngredient(Ingredient ingredient) {
         return repository.save(ingredient);
     }

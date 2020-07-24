@@ -11,6 +11,8 @@ public interface IngredientService {
 
     List<Ingredient> getAllIngredients();
 
+    List<Ingredient> getIngredientsNotDependToDish();
+
     Ingredient saveIngredient(Ingredient ingredient);
 
     void deleteIngredient(Long id);

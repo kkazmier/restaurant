@@ -28,6 +28,12 @@ public class IngredientController {
         return ingredientService.getAllIngredients();
     }
 
+    @GetMapping("notDependToDish")
+    public List<Ingredient> getIngredientsNotDependToDish(){
+        logger.info("Get ingredient(s) not depend to dish");
+        return ingredientService.getIngredientsNotDependToDish();
+    }
+
     @GetMapping("get/{id}")
     public Ingredient getIngredient(@PathVariable("id") Long id) throws Exception {
         logger.info("Request ingredient by id: " + id);
