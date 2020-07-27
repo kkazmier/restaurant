@@ -3,6 +3,7 @@ package com.example.restaurant.controller;
 import com.example.restaurant.domain.Dish;
 import com.example.restaurant.domain.Employee;
 import com.example.restaurant.domain.TableOrder;
+import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.service.DishService;
 import com.example.restaurant.service.EmployeeService;
 import com.example.restaurant.service.TableOrderService;
@@ -56,22 +57,32 @@ public class TableOrderController {
         dishService.saveDish(dish);
     }
 
-    @RequestMapping(value = "addDish/{dishId}/toTableOrder/{orderId}")
+    @PutMapping(value = "addDish/{dishId}/toTableOrder/{orderId}")
     public void addDishToOrder(
-            @RequestParam("dishId") Long dishId,
-            @RequestParam("orderId") Long orderId)
-            throws Exception {
+            @PathVariable("dishId") Long dishId,
+            @PathVariable("orderId") Long orderId)
+            throws ElementNotFoundException {
         logger.info("Try add dish to table order");
-        Dish dish = dishService.getDishById(dishId).orElseThrow(Exception::new);
-        TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(Exception::new);
-        if(order.getId() != 0){
-            if (dish.getId() != 0){
+        Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
+        TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
+        dish.setOrder(order);
+        order.getDishes().add(dish);
+        dishService.saveDish(dish);
+        tableOrderService.saveTableOrder(order);
+        logger.info("Add dish " + dish + " to order " + order);
+    }
 
-            } else {
-                logger.info("Dish with given id doesn't exist!");
-            }
-        } else {
-            logger.info("Order with given id doesn't exist!");
-        }
+    @PutMapping(value = "removeDish/{dishId}/fromTableOrder/{orderId}")
+    public void removeDishFromOrder(
+            @PathVariable("dishId") Long dishId,
+            @PathVariable("orderId") Long orderId)
+            throws ElementNotFoundException {
+        Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
+        TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
+        order.getDishes().remove(dish);
+        dish.setOrder(null);
+        tableOrderService.saveTableOrder(order);
+        dishService.saveDish(dish);
+        logger.info("Remove dish " + dish + " from " + order);
     }
 }
