@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @Transactional
@@ -39,5 +40,13 @@ public class TableOrderServiceImpl implements TableOrderService {
     @Override
     public boolean isTableOrderExist(Long id) {
         return tableOrderRepository.existsTableOrderById(id);
+    }
+
+    @Override
+    public void calculateTotalCost(Long id) throws ElementNotFoundException {
+        TableOrder order = tableOrderRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+        AtomicReference<Double> totalCost = new AtomicReference<>(0.0);
+        order.getDishes()
+                .stream().forEach(d -> totalCost.updateAndGet(v -> v + d.getPrice()));
     }
 }
