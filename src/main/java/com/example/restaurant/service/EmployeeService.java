@@ -1,7 +1,6 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Employee;
-import com.example.restaurant.domain.Ingredient;
 
 import java.util.List;
 import java.util.Optional;

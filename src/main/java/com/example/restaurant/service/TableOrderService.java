@@ -16,6 +16,4 @@ public interface TableOrderService {
     void deleteTableOrder(Long id);
 
     boolean isTableOrderExist(Long id);
-
-    void calculateTotalCost(Long id) throws ElementNotFoundException;
 }

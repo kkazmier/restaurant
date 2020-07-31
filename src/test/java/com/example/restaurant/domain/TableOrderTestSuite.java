@@ -1,16 +1,9 @@
 package com.example.restaurant.domain;
 
-import com.example.restaurant.domain.Dish;
-import com.example.restaurant.domain.TableOrder;
-import com.example.restaurant.exception.ElementNotFoundException;
-import com.example.restaurant.repository.TableOrderRepository;
-import com.example.restaurant.service.TableOrderServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
