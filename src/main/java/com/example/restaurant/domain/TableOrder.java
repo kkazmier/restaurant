@@ -30,4 +30,11 @@ public class TableOrder extends BaseOrder {
             referencedColumnName = "id")
             //nullable = false)
     private Employee employee = new Employee();
+
+    @Override
+    public Double getTotalCost() {
+        return dishes.stream()
+                .map(Dish::getPrice)
+                .reduce(0.00, Double::sum);
+    }
 }
