@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,9 @@ public class EmployeeController {
     @PostMapping(value = "createTableOrder/{empId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTableOrder(@RequestBody TableOrder order, @PathVariable("empId") Long empId) throws Exception {
         logger.info("Try add new table order to employee");
+        order.setCreatedTime(LocalDateTime.now());
+        order.setStatus("Otwarte");
+        order.setTotalCost(0.00);
         Employee emp = employeeService.getEmployee(empId).orElseThrow(Exception::new);
         emp.getOrders().add(order);
         order.setEmployee(emp);

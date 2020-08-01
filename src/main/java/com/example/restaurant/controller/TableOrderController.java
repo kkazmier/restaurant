@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class TableOrderController {
     }
 
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createTableOrder(@RequestBody TableOrder tableOrder) throws URISyntaxException, Exception {
+    public ResponseEntity<?> createTableOrder(@RequestBody TableOrder tableOrder) throws Exception {
         logger.info("Try to create new table order");
         if(tableOrderService.isTableOrderExist(tableOrder.getId())){
             return ResponseEntity.badRequest().body("Order with given id already exist.");

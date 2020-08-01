@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @MappedSuperclass
 @Getter
+@Setter
 public class BaseOrder extends NamedEntity {
     @Column(name = "createdTime")
     private LocalDateTime createdTime;
