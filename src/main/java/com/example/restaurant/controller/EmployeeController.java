@@ -33,7 +33,7 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
     }
 
-    @PostMapping(value = "createTableOrder/{empId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "createTableOrder/{empId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTableOrder(@RequestBody TableOrder order, @PathVariable("empId") Long empId) throws Exception {
         logger.info("Try add new table order to employee");
         order.setCreatedTime(LocalDateTime.now());
@@ -44,5 +44,16 @@ public class EmployeeController {
         order.setEmployee(emp);
         employeeService.saveEmployee(emp);
         tableOrderService.saveTableOrder(order);
+    }
+
+    @PutMapping(value = "deleteTableOrder/{orderId}/fromEmployee/{empId}")
+    public void deleteTableOrder(
+            @PathVariable("orderId") Long orderId,
+            @PathVariable("empId") Long empId)
+            throws Exception{
+        Employee emp = employeeService.getEmployee(empId).orElseThrow(Exception::new);
+        TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(Exception::new);
+        emp.getOrders().remove(order);
+        tableOrderService.deleteTableOrder(orderId);
     }
 }
