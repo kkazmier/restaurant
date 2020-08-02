@@ -11,4 +11,8 @@ public interface EmployeeService {
     Employee saveEmployee(Employee employee);
 
     Optional<Employee> getEmployee(Long id) throws Exception;
+
+    void setPIN(Long id, String pin);
+
+    void changePIN(Long id, String pin);
 }
