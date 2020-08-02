@@ -18,6 +18,15 @@ public class Employee extends Person {
     @Column(name = "hireDate")
     private LocalDate hireDate;
 
+    @Column
+    private String login;
+
+    @Column
+    private String password;
+
+    @Column
+    private String PIN;
+
     @JsonManagedReference
     @OneToMany(
             targetEntity = Role.class,
