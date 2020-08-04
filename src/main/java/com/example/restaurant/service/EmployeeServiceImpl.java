@@ -1,6 +1,7 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Employee;
+import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,26 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void setPIN(Long id, String pin) {
-        AuthorisationDataStorage.getInstance().setPIN(id, pin);
+    public String getPIN(Long id) {
+        return employeeRepository
+                .findEmployeeById(id)
+                .get()
+                .getPIN();
     }
 
     @Override
-    public void changePIN(Long id, String pin) {
-        AuthorisationDataStorage.getInstance().changePIN(id, pin);
+    public void setPIN(Long id, String pin) {
+        employeeRepository
+                .findEmployeeById(id)
+                .get()
+                .setPIN(pin);
+    }
+
+    @Override
+    public void changePIN(Long id, String pin)  {
+        employeeRepository
+                .findEmployeeById(id)
+                .get()
+                .setPIN(pin);
     }
 }

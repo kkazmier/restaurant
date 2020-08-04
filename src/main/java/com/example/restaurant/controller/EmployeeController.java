@@ -56,4 +56,17 @@ public class EmployeeController {
         emp.getOrders().remove(order);
         tableOrderService.deleteTableOrder(orderId);
     }
+
+    @GetMapping(value = "getPIN/{empId}")
+    public String getPIN(@PathVariable("empId") Long id){
+        return employeeService.getPIN(id);
+    }
+
+    @PutMapping(value = "setPIN/{pin}/employee/{empId}")
+    public void setPIN(
+            @PathVariable("pin") String pin,
+            @PathVariable("empId") Long empId) throws Exception {
+        employeeService.setPIN(empId, pin);
+    }
+
 }
