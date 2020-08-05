@@ -63,10 +63,10 @@ public class EmployeeController {
     }
 
     @PutMapping(value = "setPIN/{pin}/employee/{empId}")
-    public void setPIN(
+    public Boolean setPIN(
             @PathVariable("pin") String pin,
-            @PathVariable("empId") Long empId) throws Exception {
-        employeeService.setPIN(empId, pin);
+            @PathVariable("empId") Long empId) {
+        return employeeService.setPIN(empId, pin);
     }
 
 }

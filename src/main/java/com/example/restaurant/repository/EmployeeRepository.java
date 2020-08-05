@@ -16,4 +16,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     Employee save(Employee employee);
 
     Optional<Employee> findEmployeeById(Long id);
+
+    Boolean existsByPIN(String pin);
 }

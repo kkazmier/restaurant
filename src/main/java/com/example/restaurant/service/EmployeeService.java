@@ -13,9 +13,11 @@ public interface EmployeeService {
 
     Optional<Employee> getEmployee(Long id) throws Exception;
 
+    Boolean isExistEmployeeByGivenPIN(String pin);
+
     String getPIN(Long id);
 
-    void setPIN(Long id, String pin);
+    Boolean setPIN(Long id, String pin);
 
     void changePIN(Long id, String pin) throws ElementNotFoundException;
 }

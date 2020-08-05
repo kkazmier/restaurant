@@ -4,6 +4,8 @@ import com.example.restaurant.domain.Employee;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import security.AuthorisationDataStorage;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @Transactional
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService{
+    private final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final EmployeeRepository employeeRepository;
 
     @Override
@@ -32,6 +35,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    public Boolean isExistEmployeeByGivenPIN(String pin) {
+        return employeeRepository.existsByPIN(pin);
+    }
+
+    @Override
     public String getPIN(Long id) {
         return employeeRepository
                 .findEmployeeById(id)
@@ -40,11 +48,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void setPIN(Long id, String pin) {
-        employeeRepository
-                .findEmployeeById(id)
-                .get()
-                .setPIN(pin);
+    public Boolean setPIN(Long id, String pin) {
+        if(employeeRepository.existsByPIN(pin)){
+            logger.info("Given PIN already exist!");
+            return false;
+        } else {
+            employeeRepository.findEmployeeById(id).get().setPIN(pin);
+            logger.info("PIN have been changed to: " + pin);
+            return true;
+        }
     }
 
     @Override
