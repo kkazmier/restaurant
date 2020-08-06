@@ -18,4 +18,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     Optional<Employee> findEmployeeById(Long id);
 
     Boolean existsByPIN(String pin);
+
+    Optional<Employee> findEmployeeByPIN(String pin);
 }

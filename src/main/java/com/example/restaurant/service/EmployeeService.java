@@ -13,6 +13,8 @@ public interface EmployeeService {
 
     Optional<Employee> getEmployee(Long id) throws Exception;
 
+    Optional<Employee> getEmployeeByPIN(String pin);
+
     Boolean isExistEmployeeByGivenPIN(String pin);
 
     String getPIN(Long id);

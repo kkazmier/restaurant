@@ -1,7 +1,6 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Employee;
-import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -32,6 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Optional<Employee> getEmployee(Long id) throws Exception {
         return employeeRepository.findEmployeeById(id);
+    }
+
+    @Override
+    public Optional<Employee> getEmployeeByPIN(String pin) {
+        return employeeRepository.findEmployeeByPIN(pin);
     }
 
     @Override
