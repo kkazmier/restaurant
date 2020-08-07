@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/employee/")
@@ -25,6 +26,21 @@ public class EmployeeController {
     @GetMapping(value = "all")
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
+    }
+
+    @GetMapping(value = "getEmployeeByPIN/{pin}")
+    public Optional<Employee> getEmployeeByPIN(@PathVariable("pin") String pin){
+        return employeeService.getEmployeeByPIN(pin);
+    }
+
+    @GetMapping(value = "getEmployeeIdByPIN/{pin}")
+    public Long getEmployeeIdByPIN(@PathVariable("pin") String pin){
+        Optional<Employee> emp = employeeService.getEmployeeByPIN(pin);
+        if(emp.isPresent()){
+            return emp.get().getId();
+        } else {
+            return -1l;
+        }
     }
 
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
