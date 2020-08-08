@@ -59,7 +59,6 @@ public class EmployeeController {
         emp.getOrders().add(order);
         order.setEmployee(emp);
         employeeService.saveEmployee(emp);
-        tableOrderService.saveTableOrder(order);
     }
 
     @PutMapping(value = "deleteTableOrder/{orderId}/fromEmployee/{empId}")
