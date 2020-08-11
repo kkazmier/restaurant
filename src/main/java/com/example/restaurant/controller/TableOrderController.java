@@ -50,7 +50,7 @@ public class TableOrderController {
             throws Exception {
         logger.info("Try add dish to table order");
         TableOrder order = tableOrderService.getTableOrderById(id).orElseThrow(Exception::new);
-        dish.setOrder(order);
+        dish.getOrders().add(order);
         order.getDishes().add(dish);
         tableOrderService.saveTableOrder(order);
         dishService.saveDish(dish);
@@ -64,7 +64,7 @@ public class TableOrderController {
         logger.info("Try add dish to table order");
         Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
         TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
-        dish.setOrder(order);
+        dish.getOrders().add(order);
         order.getDishes().add(dish);
         dishService.saveDish(dish);
         tableOrderService.saveTableOrder(order);
@@ -79,7 +79,7 @@ public class TableOrderController {
         Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
         TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
         order.getDishes().remove(dish);
-        dish.setOrder(null);
+        dish.getOrders().remove(order);
         tableOrderService.saveTableOrder(order);
         dishService.saveDish(dish);
         logger.info("Remove dish " + dish + " from " + order);

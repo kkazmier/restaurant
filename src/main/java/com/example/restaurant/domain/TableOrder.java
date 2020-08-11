@@ -15,12 +15,11 @@ import java.util.List;
 @Entity
 @Table(name = "tableOrders")
 public class TableOrder extends BaseOrder {
-    @JsonManagedReference
-    @OneToMany(
-            targetEntity = Dish.class,
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "tableOrdersDishes",
+            joinColumns = @JoinColumn(name = "dishId"),
+            inverseJoinColumns = @JoinColumn(name = "tableOrderId"))
     List<Dish> dishes = new ArrayList<>();
 
     @JsonBackReference

@@ -21,12 +21,8 @@ public class Dish extends NamedEntity {
     @Column
     private Double price;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(
-            name = "odderId",
-            referencedColumnName = "id")
-    TableOrder order;
+    @ManyToMany(mappedBy = "dishes")
+    List<TableOrder> orders = new ArrayList<>();
 
     @JsonManagedReference
     @OneToMany(
