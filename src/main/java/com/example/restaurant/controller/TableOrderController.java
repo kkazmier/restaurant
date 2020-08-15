@@ -84,4 +84,9 @@ public class TableOrderController {
         dishService.saveDish(dish);
         logger.info("Remove dish " + dish + " from " + order);
     }
+
+    @GetMapping(value = "getDishes/{id}")
+    public List<Dish> getDishes(@PathVariable("id") Long id) throws ElementNotFoundException {
+        return tableOrderService.getTableOrderById(id).get().getDishes();
+    }
 }
