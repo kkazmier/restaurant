@@ -1,6 +1,7 @@
 package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Dish extends NamedEntity {
     private Double price;
 
     @ManyToMany(mappedBy = "dishes")
+    @JsonIgnoreProperties("dishes")
     List<TableOrder> orders = new ArrayList<>();
 
     @JsonManagedReference

@@ -1,6 +1,7 @@
 package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class TableOrder extends BaseOrder {
             name = "tableOrdersDishes",
             joinColumns = @JoinColumn(name = "dishId"),
             inverseJoinColumns = @JoinColumn(name = "tableOrderId"))
+    @JsonIgnoreProperties("orders")
     List<Dish> dishes = new ArrayList<>();
 
     @JsonBackReference
