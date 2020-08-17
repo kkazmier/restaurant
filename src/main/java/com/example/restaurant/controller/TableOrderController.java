@@ -32,6 +32,11 @@ public class TableOrderController {
         return tableOrderService.getAllTableOrders();
     }
 
+    @GetMapping("get/{id}")
+    public TableOrder getOrder(@PathVariable("id") Long id) throws ElementNotFoundException{
+        return tableOrderService.getTableOrderById(id).orElseThrow(ElementNotFoundException::new);
+    }
+
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createTableOrder(@RequestBody TableOrder tableOrder) throws Exception {
         logger.info("Try to create new table order");
