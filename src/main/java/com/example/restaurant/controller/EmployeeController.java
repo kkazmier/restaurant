@@ -50,6 +50,11 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
     }
 
+    @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Employee updateEmployee(@RequestBody Employee employee){
+        return employeeService.saveEmployee(employee);
+    }
+
     @PutMapping(value = "createTableOrder/{empId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTableOrder(@RequestBody TableOrder order, @PathVariable("empId") Long empId) throws Exception {
         logger.info("Try add new table order to employee");
