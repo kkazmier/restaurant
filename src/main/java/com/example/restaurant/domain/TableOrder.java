@@ -2,11 +2,12 @@ package com.example.restaurant.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 @AllArgsConstructor
@@ -33,9 +34,9 @@ public class TableOrder extends BaseOrder {
     private Employee employee = new Employee();
 
     @Override
-    public Double getTotalCost() {
+    public BigDecimal getTotalCost() {
         return dishes.stream()
                 .map(Dish::getPrice)
-                .reduce(0.00, Double::sum);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

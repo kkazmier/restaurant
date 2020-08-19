@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,7 @@ public class EmployeeController {
         logger.info("Try add new table order to employee");
         order.setCreatedTime(LocalDateTime.now());
         order.setStatus("Otwarte");
-        order.setTotalCost(0.00);
+        order.setTotalCost(BigDecimal.ZERO);
         Employee emp = employeeService.getEmployee(empId).orElseThrow(Exception::new);
         emp.getOrders().add(order);
         order.setEmployee(emp);
