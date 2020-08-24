@@ -2,6 +2,7 @@ package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Employee;
 import com.example.restaurant.domain.TableOrder;
+import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.service.EmployeeService;
 import com.example.restaurant.service.TableOrderService;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,11 @@ public class EmployeeController {
     @GetMapping(value = "all")
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
+    }
+
+    @GetMapping(value = "get/{id}")
+    public Employee getEmployee(@PathVariable("id") Long id) throws Exception {
+        return employeeService.getEmployee(id).orElseThrow(ElementNotFoundException::new);
     }
 
     @GetMapping(value = "getEmployeeByPIN/{pin}")
