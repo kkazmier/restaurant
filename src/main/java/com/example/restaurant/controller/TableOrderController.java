@@ -46,6 +46,11 @@ public class TableOrderController {
         return ResponseEntity.created(new URI("/v1/tableOrder/create")).body(result);
     }
 
+    @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public TableOrder updateTableOrder(@RequestBody TableOrder tableOrder){
+        return tableOrderService.saveTableOrder(tableOrder);
+    }
+
     @PostMapping(value = "addDish/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addDish(
             @RequestParam("id") Long id,
