@@ -12,7 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.net.URI;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,7 +50,13 @@ public class TableOrderController {
     }
 
     @PutMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TableOrder updateTableOrder(@RequestBody TableOrder tableOrder){
+    public TableOrder updateTableOrder(@RequestBody TableOrder tableOrder) throws ElementNotFoundException {
+        tableOrder.setDishes(
+                tableOrderService
+                        .getTableOrderById(tableOrder.getId()).orElse(new TableOrder())
+                        .getDishes()
+        );
+        tableOrder.setClosedTime(LocalDateTime.now());
         return tableOrderService.saveTableOrder(tableOrder);
     }
 

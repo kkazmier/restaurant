@@ -3,11 +3,16 @@ package com.example.restaurant.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.CascadeType.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +31,7 @@ public class TableOrder extends BaseOrder {
 
     @JsonBackReference
     @ManyToOne
+    @Cascade(CascadeType.ALL)
     @JoinColumn(
             name = "employeeId",
             referencedColumnName = "id")
