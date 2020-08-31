@@ -113,4 +113,9 @@ public class TableOrderController {
     public List<Dish> getDishes(@PathVariable("id") Long id) throws ElementNotFoundException {
         return tableOrderService.getTableOrderById(id).get().getDishes();
     }
+
+    @PutMapping("close/{id}")
+    public void closeOrder(@PathVariable("id") Long id) throws ElementNotFoundException {
+        tableOrderService.close(id);
+    }
 }

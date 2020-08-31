@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +45,11 @@ public class TableOrderServiceImpl implements TableOrderService {
     @Override
     public boolean isTableOrderExist(Long id) {
         return tableOrderRepository.existsTableOrderById(id);
+    }
+
+    @Override
+    public void close(Long id) {
+        tableOrderRepository.findById(id).get().setStatus("Zamknięte");
+        tableOrderRepository.findById(id).get().setClosedTime(LocalDateTime.now());
     }
 }

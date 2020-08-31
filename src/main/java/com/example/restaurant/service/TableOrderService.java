@@ -17,5 +17,7 @@ public interface TableOrderService {
 
     void deleteTableOrder(Long id);
 
+    void close(Long id);
+
     boolean isTableOrderExist(Long id);
 }
