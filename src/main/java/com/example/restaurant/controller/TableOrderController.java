@@ -33,6 +33,11 @@ public class TableOrderController {
         return tableOrderService.getAllTableOrders();
     }
 
+    @GetMapping(value = "getAllByEmp/{id}")
+    public List<TableOrder> getAllOrders(@PathVariable("id") Long id) {
+        return tableOrderService.getOrdersByEmpId(id);
+    }
+
     @GetMapping("get/{id}")
     public TableOrder getOrder(@PathVariable("id") Long id) throws ElementNotFoundException{
         return tableOrderService.getTableOrderById(id).orElseThrow(ElementNotFoundException::new);
@@ -81,6 +86,7 @@ public class TableOrderController {
         logger.info("Try add dish to table order");
         Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
         TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
+        order.getTotalCost().add(dish.getPrice());
         dish.getOrders().add(order);
         order.getDishes().add(dish);
         dishService.saveDish(dish);
@@ -95,6 +101,7 @@ public class TableOrderController {
             throws ElementNotFoundException {
         Dish dish = dishService.getDishById(dishId).orElseThrow(ElementNotFoundException::new);
         TableOrder order = tableOrderService.getTableOrderById(orderId).orElseThrow(ElementNotFoundException::new);
+        order.getTotalCost().subtract(dish.getPrice());
         order.getDishes().remove(dish);
         dish.getOrders().remove(order);
         tableOrderService.saveTableOrder(order);

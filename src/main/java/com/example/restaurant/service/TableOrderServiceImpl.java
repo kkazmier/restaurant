@@ -27,6 +27,11 @@ public class TableOrderServiceImpl implements TableOrderService {
     }
 
     @Override
+    public List<TableOrder> getOrdersByEmpId(Long id) {
+        return tableOrderRepository.getTableOrdersByEmployeeId(id);
+    }
+
+    @Override
     public TableOrder saveTableOrder(TableOrder order) {
         return tableOrderRepository.save(order);
     }

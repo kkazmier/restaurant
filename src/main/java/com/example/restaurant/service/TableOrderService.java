@@ -11,6 +11,8 @@ public interface TableOrderService {
 
     List<TableOrder> getAllTableOrders();
 
+    List<TableOrder> getOrdersByEmpId(Long id);
+
     TableOrder saveTableOrder(TableOrder order);
 
     void deleteTableOrder(Long id);
