@@ -29,14 +29,6 @@ public class Employee extends Person {
 
     @JsonManagedReference
     @OneToMany(
-            targetEntity = Role.class,
-            mappedBy = "employee",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private List<Role> roles = new ArrayList<>();
-
-    @JsonManagedReference
-    @OneToMany(
             targetEntity = TableOrder.class,
             mappedBy = "employee",
             cascade = CascadeType.ALL,
