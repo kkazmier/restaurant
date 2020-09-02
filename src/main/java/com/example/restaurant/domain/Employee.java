@@ -15,6 +15,9 @@ import java.util.List;
 @Entity
 @Table(name = "employees")
 public class Employee extends Person {
+    @Column(name = "roles")
+    private Role role;
+
     @Column(name = "hireDate")
     private LocalDate hireDate;
 
