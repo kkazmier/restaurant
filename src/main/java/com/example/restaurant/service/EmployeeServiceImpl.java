@@ -1,6 +1,7 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Employee;
+import com.example.restaurant.domain.Role;
 import com.example.restaurant.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -69,5 +70,13 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .findEmployeeById(id)
                 .get()
                 .setPIN(pin);
+    }
+
+    @Override
+    public void setRole(Role role, Long id) {
+        employeeRepository
+                .findEmployeeById(id)
+                .get()
+                .setRole(role);
     }
 }

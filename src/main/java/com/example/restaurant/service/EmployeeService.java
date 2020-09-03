@@ -1,6 +1,7 @@
 package com.example.restaurant.service;
 
 import com.example.restaurant.domain.Employee;
+import com.example.restaurant.domain.Role;
 import com.example.restaurant.exception.ElementNotFoundException;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface EmployeeService {
     Boolean setPIN(Long id, String pin);
 
     void changePIN(Long id, String pin) throws ElementNotFoundException;
+
+    void setRole(Role role, Long id);
 }

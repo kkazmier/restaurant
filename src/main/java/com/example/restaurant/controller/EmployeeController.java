@@ -1,6 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Employee;
+import com.example.restaurant.domain.Role;
 import com.example.restaurant.domain.TableOrder;
 import com.example.restaurant.exception.ElementNotFoundException;
 import com.example.restaurant.service.EmployeeService;
@@ -96,4 +97,10 @@ public class EmployeeController {
         return employeeService.setPIN(empId, pin);
     }
 
+    @PutMapping(value = "setRole/{role}/onEmp/{empId}")
+    public void setRole(
+            @PathVariable("role") Role role,
+            @PathVariable("empId") Long id){
+        employeeService.setRole(role, id);
+    }
 }
