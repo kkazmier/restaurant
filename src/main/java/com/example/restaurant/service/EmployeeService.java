@@ -25,4 +25,6 @@ public interface EmployeeService {
     void changePIN(Long id, String pin) throws ElementNotFoundException;
 
     void setRole(Role role, Long id);
+
+    Role getRole(Long id);
 }

@@ -103,4 +103,9 @@ public class EmployeeController {
             @PathVariable("empId") Long id){
         employeeService.setRole(role, id);
     }
+
+    @GetMapping(value = "getRole/{id}")
+    public Role getRole(@PathVariable("id") Long id){
+        return employeeService.getRole(id);
+    }
 }

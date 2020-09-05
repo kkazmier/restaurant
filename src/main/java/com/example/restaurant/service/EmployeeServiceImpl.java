@@ -79,4 +79,12 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .get()
                 .setRole(role);
     }
+
+    @Override
+    public Role getRole(Long id) {
+        return employeeRepository
+                .findEmployeeById(id)
+                .get()
+                .getRole();
+    }
 }
