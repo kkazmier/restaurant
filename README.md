@@ -16,7 +16,7 @@ Restaurant is a Spring Boot application that allows manage small gastronomic com
 ##### Ingredients
 ###### Get all exist ingredients
 `GET /v1/ingredient/all`
-##### Get all 'free' ingredients (not depend to dish)
+###### Get all 'free' ingredients (not depend to dish)
 `GET /v1/ingredient/notDependToDish`
 ###### Request a single ingredient
 `GET /v1/ingredient/get/{id}`
